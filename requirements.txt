@@ -1,0 +1,11 @@
+Django>=5.0
+djangorestframework
+django-cors-headers
+djangorestframework-simplejwt
+psycopg2-binary
+python-dotenv
+requests
+exponent-server-sdk
+asgiref
+sqlparse
+tzdata
