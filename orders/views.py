@@ -93,3 +93,51 @@ class VendorOrderStatusUpdateView(generics.UpdateAPIView):
 
         serializer = self.get_serializer(order)
         return Response(serializer.data)
+ 
+ 
+class UserOrderCancelView(generics.UpdateAPIView):
+    """
+    PATCH /api/orders/<pk>/cancel/
+    Allows the customer to cancel their own order if it's still 'pending' or 'confirmed'.
+    """
+    serializer_class = OrderSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    http_method_names = ['patch']
+ 
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
+ 
+    def patch(self, request, *args, **kwargs):
+        order = self.get_object()
+        allowed_statuses = ['pending', 'confirmed']
+        
+        if order.status.lower() not in allowed_statuses:
+            return Response(
+                {'error': f'Order cannot be cancelled in its current state ({order.status}).'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+ 
+        order.status = 'cancelled'
+        order.save(update_fields=['status'])
+        
+        serializer = self.get_serializer(order)
+        return Response(serializer.data)
+ 
+ 
+class OrderDeleteView(generics.DestroyAPIView):
+    """
+    DELETE /api/orders/<pk>/
+    Allows the customer to delete their own order if it's 'cancelled' or 'delivered'.
+    """
+    serializer_class = OrderSerializer
+    permission_classes = [permissions.IsAuthenticated]
+ 
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
+ 
+    def perform_destroy(self, instance):
+        allowed_statuses = ['cancelled', 'delivered']
+        if instance.status.lower() not in allowed_statuses:
+            from rest_framework.exceptions import ValidationError
+            raise ValidationError(f'Order can only be deleted if it is cancelled or delivered.')
+        instance.delete()
