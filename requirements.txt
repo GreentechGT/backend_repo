@@ -9,3 +9,6 @@ exponent-server-sdk
 asgiref
 sqlparse
 tzdata
+gunicorn
+whitenoise
+dj-database-url

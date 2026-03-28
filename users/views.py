@@ -7,7 +7,7 @@ import random
 from datetime import timedelta
 from django.db.models import Q
 from .serializers import RegisterSerializer, UserSerializer, MyTokenObtainPairSerializer, AddressSerializer, VendorSerializer, VendorProfileSerializer
-from .utils import send_otp_via_email, send_otp_via_twilio
+from .utils import send_otp_via_email
 from .models import User, Address, Vendor, Customer
 
 import logging

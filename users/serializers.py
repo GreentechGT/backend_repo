@@ -6,7 +6,7 @@ import random
 from datetime import timedelta
 from django.utils import timezone
 from .models import User, Address, Vendor, Customer
-from .utils import send_otp_via_email, send_otp_via_twilio
+from .utils import send_otp_via_email
 
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
