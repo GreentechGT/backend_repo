@@ -12,3 +12,4 @@ tzdata
 gunicorn
 whitenoise
 dj-database-url
+Pillow
