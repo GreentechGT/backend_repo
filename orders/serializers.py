@@ -22,7 +22,11 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True)
-    shipping_address = serializers.IntegerField(required=False, allow_null=True)
+    shipping_address = serializers.PrimaryKeyRelatedField(
+        queryset=Address.objects.all(),
+        required=False,
+        allow_null=True
+    )
 
     class Meta:
         model = Order
@@ -34,7 +38,7 @@ class OrderSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'order_number', 'user', 'created_at']
 
     def validate_shipping_address(self, value):
-        if value and not Address.objects.filter(id=value).exists():
+        if value and not Address.objects.filter(id=value.id).exists():
             return None
         return value
 
@@ -50,10 +54,9 @@ class OrderSerializer(serializers.ModelSerializer):
         if not user or user.is_anonymous:
             raise serializers.ValidationError({"user": "Authentication required to place an order."})
 
-        shipping_address_id = validated_data.pop('shipping_address', None)
-        if shipping_address_id:
-            validated_data['shipping_address'] = Address.objects.filter(id=shipping_address_id).first()
-
+        # validated_data['shipping_address'] now contains actual Address instance 
+        # from PrimaryKeyRelatedField, no manual fetching needed here anymore
+        
         order = Order.objects.create(user=user, **validated_data)
 
         for item_data in items_data:
@@ -64,26 +67,6 @@ class OrderSerializer(serializers.ModelSerializer):
             OrderItem.objects.create(order=order, product=product, **item_data)
 
         return order
-
-    def to_representation(self, instance):
-        try:
-            data = super().to_representation(instance)
-            # Ensure shipping_address returns the ID as an integer in the response
-            if instance.shipping_address:
-                data['shipping_address'] = instance.shipping_address.id
-            return data
-        except Exception as e:
-            print(f">>> ERROR during Order Serialization: {str(e)}")
-            import traceback
-            traceback.print_exc()
-            # Return a basic version if full serialization fails to avoid 500
-            return {
-                "id": instance.id,
-                "order_number": f"#ORD-{instance.id}",
-                "status": instance.status,
-                "total_amount": str(instance.total_amount),
-                "message": "Order created, but response serialization had a minor issue."
-            }
 
 
 # ─── Vendor-specific serializers ───────────────────────────────────────────────
