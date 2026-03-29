@@ -21,9 +21,11 @@ def order_status_changed(sender, instance, created, **kwargs):
         return
     # If the order is newly created, it's 'confirmed' by default
     if created:
-        notify_order_status_change(instance)
+        # notify_order_status_change(instance)
+        pass
     else:
         # Check if status has changed
         previous_status = getattr(instance, '_previous_status', None)
         if previous_status and previous_status != instance.status:
-            notify_order_status_change(instance)
+            # notify_order_status_change(instance)
+            pass
