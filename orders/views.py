@@ -9,7 +9,15 @@ class OrderCreateView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        try:
+            print(f">>> Processing Order for User: {self.request.user}")
+            serializer.save(user=self.request.user)
+            print(">>> Order Created Successfully!")
+        except Exception as e:
+            print(f">>> ERROR during Order Creation: {str(e)}")
+            import traceback
+            traceback.print_exc()
+            raise e
 
 
 class OrderListView(generics.ListAPIView):
