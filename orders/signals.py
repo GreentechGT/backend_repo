@@ -5,6 +5,8 @@ from .notifications import notify_order_status_change
 
 @receiver(pre_save, sender=Order)
 def store_previous_status(sender, instance, **kwargs):
+    if kwargs.get('raw'):
+        return
     if instance.id:
         try:
             instance._previous_status = Order.objects.get(id=instance.id).status
@@ -15,6 +17,8 @@ def store_previous_status(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Order)
 def order_status_changed(sender, instance, created, **kwargs):
+    if kwargs.get('raw'):
+        return
     # If the order is newly created, it's 'confirmed' by default
     if created:
         notify_order_status_change(instance)
