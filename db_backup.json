@@ -1,1 +1,971 @@
-[{"model": "product.category", "pk": 1, "fields": {"name_en": "Milk", "name_hi": "दूध"}}, {"model": "product.category", "pk": 2, "fields": {"name_en": "Ghee", "name_hi": "घी"}}, {"model": "product.category", "pk": 3, "fields": {"name_en": "Butter", "name_hi": "मक्खन"}}, {"model": "product.category", "pk": 4, "fields": {"name_en": "Curd", "name_hi": "दही"}}, {"model": "product.category", "pk": 5, "fields": {"name_en": "Paneer", "name_hi": "पनीर"}}, {"model": "product.category", "pk": 6, "fields": {"name_en": "Eggs", "name_hi": "अंडे"}}, {"model": "product.shopdetail", "pk": 6, "fields": {"vendor": "VEN-2026-5282", "shop_name_en": "Shop 1", "shop_name_hi": null, "address_en": "Nashik", "address_hi": null, "rating": "4.5", "opening_time": "6:00 AM", "closing_time": "9:00 PM"}}, {"model": "product.shopdetail", "pk": 7, "fields": {"vendor": "VEN-2026-7072", "shop_name_en": "Shop 1", "shop_name_hi": null, "address_en": "Lasalgaon", "address_hi": null, "rating": "4.5", "opening_time": "6:00 AM", "closing_time": "9:00 PM"}}, {"model": "product.shopdetail", "pk": 8, "fields": {"vendor": "VEN-2026-8557", "shop_name_en": "Shop 2", "shop_name_hi": null, "address_en": "Lasalgaon", "address_hi": null, "rating": "4.5", "opening_time": "6:00 AM", "closing_time": "9:00 PM"}}, {"model": "product.shopdetail", "pk": 9, "fields": {"vendor": "VEN-2026-1459", "shop_name_en": "Shop 3", "shop_name_hi": null, "address_en": "Nashik", "address_hi": null, "rating": "4.5", "opening_time": "6:00 AM", "closing_time": "9:00 PM"}}, {"model": "product.shopdetail", "pk": 10, "fields": {"vendor": "VEN-2026-9109", "shop_name_en": "Milk", "shop_name_hi": null, "address_en": "Lasalgaon", "address_hi": "", "rating": "4.5", "opening_time": "6:00 AM", "closing_time": "9:00 PM"}}, {"model": "product.nutrition", "pk": 1, "fields": {"product": 1, "calories": "62", "protein": "3.2", "fat": "3.6", "carbs": "4.8", "per_unit": "100ml"}}, {"model": "product.nutrition", "pk": 2, "fields": {"product": 2, "calories": "92", "protein": "3.8", "fat": "6.9", "carbs": "5.2", "per_unit": "100ml"}}, {"model": "product.nutrition", "pk": 5, "fields": {"product": 7, "calories": "717", "protein": "0.9", "fat": "81.1", "carbs": "0.1", "per_unit": "100g"}}, {"model": "product.nutrition", "pk": 6, "fields": {"product": 8, "calories": "883", "protein": "0.3", "fat": "99.5", "carbs": "0", "per_unit": "100ml"}}, {"model": "product.nutrition", "pk": 7, "fields": {"product": 9, "calories": "78", "protein": "6.3", "fat": "5.3", "carbs": "0.6", "per_unit": "1 egg"}}, {"model": "product.nutrition", "pk": 8, "fields": {"product": 6, "calories": "265", "protein": "18.3", "fat": "20.8", "carbs": "1.2", "per_unit": "100g"}}, {"model": "product.nutrition", "pk": 9, "fields": {"product": 4, "calories": "61", "protein": "3.5", "fat": "3.3", "carbs": "4.7", "per_unit": "100ml"}}, {"model": "product.product", "pk": 1, "fields": {"category": 1, "shop_detail": 10, "name_en": "Fresh Cow Milk", "name_hi": "ताजा गाय का दूध", "description_en": "Organic whole cow milk, pasteurized and chilled.", "description_hi": "जैविक पूर्ण गाय का दूध, पाश्चुरीकृत और ठंडा किया हुआ।", "price": "65.00", "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=600&h=600&q=80", "default_quantity": "1", "discount": "10", "stock_quantity": 70, "is_active": true, "created_at": "2026-03-26T11:39:20.927Z", "updated_at": "2026-03-27T15:38:30.347Z", "vendor_id": "VEN-2026-9109"}}, {"model": "product.product", "pk": 2, "fields": {"category": 1, "shop_detail": 8, "name_en": "Creamy Buffalo Milk", "name_hi": "मलाईदार भैंस का दूध", "description_en": "High-fat buffalo milk, perfect for tea and desserts.", "description_hi": "उच्च वसा वाला भैंस का दूध, चाय और मिठाइयों के लिए एकदम सही।", "price": "85.00", "image": "https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=600&h=600&q=80", "default_quantity": "1", "discount": null, "stock_quantity": 0, "is_active": true, "created_at": "2026-03-26T11:39:20.927Z", "updated_at": "2026-03-27T15:38:30.343Z", "vendor_id": "VEN-2026-8557"}}, {"model": "product.product", "pk": 4, "fields": {"category": 4, "shop_detail": 9, "name_en": "Probiotic Curd", "name_hi": "प्रोबायोटिक दही", "description_en": "Thick, creamy curd with active cultures.", "description_hi": "सक्रिय कल्चर के साथ गाढ़ा, मलाईदार दही।", "price": "45.00", "image": "https://images.unsplash.com/photo-1571212515416-fef01fc43637?auto=format&fit=crop&w=600&h=600&q=80", "default_quantity": "500", "discount": null, "stock_quantity": 0, "is_active": true, "created_at": "2026-03-26T11:39:20.927Z", "updated_at": "2026-03-27T15:38:30.340Z", "vendor_id": "VEN-2026-1459"}}, {"model": "product.product", "pk": 6, "fields": {"category": 5, "shop_detail": 10, "name_en": "Fresh Malai Paneer", "name_hi": "ताजा मलाई पनीर", "description_en": "Soft, melt-in-the-mouth cottage cheese cubes.", "description_hi": "मुलायम, मुँह में घुल जाने वाले पनीर के टुकड़े।", "price": "120.00", "image": "https://images.unsplash.com/photo-1604908554007-7f9d1b9f7c3f?auto=format&fit=crop&w=600&h=600&q=80", "default_quantity": "200", "discount": "10", "stock_quantity": 88, "is_active": true, "created_at": "2026-03-26T11:39:20.927Z", "updated_at": "2026-03-27T15:38:30.349Z", "vendor_id": "VEN-2026-9109"}}, {"model": "product.product", "pk": 7, "fields": {"category": 2, "shop_detail": 8, "name_en": "Farmstead Butter", "name_hi": "फार्मस्टेड मक्खन", "description_en": "Hand-churned unsalted white butter.", "description_hi": "हाथ से मथा हुआ बिना नमक वाला सफेद मक्खन।", "price": "210.00", "image": "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?auto=format&fit=crop&w=600&h=600&q=80", "default_quantity": "250", "discount": null, "stock_quantity": 0, "is_active": true, "created_at": "2026-03-26T11:39:20.927Z", "updated_at": "2026-03-27T15:38:30.329Z", "vendor_id": "VEN-2026-8557"}}, {"model": "product.product", "pk": 8, "fields": {"category": 2, "shop_detail": 6, "name_en": "Pure Desi Ghee", "name_hi": "शुद्ध देसी घी", "description_en": "The traditional Bilona method clarified butter.", "description_hi": "पारंपरिक बिलोना विधि द्वारा स्पष्ट मक्खन (घी)।", "price": "650.00", "image": "https://images.unsplash.com/photo-1615485737651-0e87d99f3c4f?auto=format&fit=crop&w=600&h=600&q=80", "default_quantity": "500", "discount": null, "stock_quantity": 0, "is_active": true, "created_at": "2026-03-26T11:39:20.927Z", "updated_at": "2026-03-27T15:38:30.353Z", "vendor_id": "VEN-2026-5282"}}, {"model": "product.product", "pk": 9, "fields": {"category": 6, "shop_detail": 6, "name_en": "Farm Fresh Brown Eggs", "name_hi": "फार्म फ्रेश ब्राउन अंडे", "description_en": "Antibiotic-free, protein-rich farm eggs.", "description_hi": "एंटीबायोटिक-मुक्त, प्रोटीन से भरपूर फार्म अंडे।", "price": "90.00", "image": "https://images.unsplash.com/photo-1506976785307-8732e854ad03?auto=format&fit=crop&w=600&h=600&q=80", "default_quantity": "6", "discount": "20", "stock_quantity": 0, "is_active": true, "created_at": "2026-03-26T11:39:20.927Z", "updated_at": "2026-03-27T15:38:30.351Z", "vendor_id": "VEN-2026-5282"}}, {"model": "orders.order", "pk": 29, "fields": {"user": 31, "shipping_address": null, "full_name": "Arkan Shaikh", "phone": "1234567890", "address": "46WQ+P45, Nashik Division, Lasalgaon, Lasalgaon - 422306", "city": "Lasalgaon", "pincode": "422306", "total_amount": "67.00", "payment_method": "cod", "status": "confirmed", "created_at": "2026-03-26T06:51:18.391Z"}}, {"model": "orders.orderitem", "pk": 36, "fields": {"order": 29, "product": 1, "quantity": 1, "price": "65.00", "vendor_id": "VEN-2026-9109"}}, {"model": "subscriptions.subscription", "pk": 5, "fields": {"image": null, "plan_name_en": "Monthly Basic", "plan_name_hi": "मासिक बेसिक", "desc_en": "Essential milk delivery for small families", "desc_hi": "छोटे परिवारों के लिए आवश्यक दूध वितरण", "category": "Monthly Essentials", "is_best_value": false, "discount": null, "original_price": "1500.00", "unit": "Monthly", "frequency_en": "Monthly", "frequency_hi": "मासिक", "slot_en": "Morning", "slot_hi": "सुबह", "status_en": "Active", "status_hi": "सक्रिय", "product": 1, "quantity_litres": 1, "frequency": "monthly", "slot": "morning", "status": "active", "created_at": "2026-02-27T18:00:51.391Z", "updated_at": "2026-02-27T18:00:51.391Z", "total_amount": "1200.00"}}, {"model": "subscriptions.subscription", "pk": 6, "fields": {"image": null, "plan_name_en": "Monthly Organic", "plan_name_hi": "मासिक ऑर्गेनिक", "desc_en": "Pure organic milk for health-conscious users", "desc_hi": "स्वास्थ्य के प्रति जागरूक उपयोगकर्ताओं के लिए शुद्ध जैविक दूध", "category": "Monthly Organic", "is_best_value": true, "discount": "15% OFF", "original_price": "2200.00", "unit": "Monthly", "frequency_en": "Monthly", "frequency_hi": "मासिक", "slot_en": "Morning", "slot_hi": "सुबह", "status_en": "Active", "status_hi": "सक्रिय", "product": 1, "quantity_litres": 1, "frequency": "monthly", "slot": "morning", "status": "active", "created_at": "2026-02-27T18:00:51.403Z", "updated_at": "2026-02-27T18:00:51.403Z", "total_amount": "1800.00"}}, {"model": "subscriptions.subscription", "pk": 7, "fields": {"image": null, "plan_name_en": "Yearly Family Premium", "plan_name_hi": "वार्षिक फैमिली प्रीमियम", "desc_en": "Best value for big families. Save more annually!", "desc_hi": "बड़े परिवारों के लिए सबसे अच्छा मूल्य। सालाना अधिक बचत करें!", "category": "Yearly Family Packs", "is_best_value": true, "discount": "20% OFF", "original_price": "18000.00", "unit": "Yearly", "frequency_en": "Monthly", "frequency_hi": "मासिक", "slot_en": "Morning", "slot_hi": "सुबह", "status_en": "Active", "status_hi": "सक्रिय", "product": 1, "quantity_litres": 1, "frequency": "yearly", "slot": "morning", "status": "active", "created_at": "2026-02-27T18:00:51.408Z", "updated_at": "2026-03-15T09:32:24.806Z", "total_amount": "15000.00"}}, {"model": "subscriptions.subscription", "pk": 8, "fields": {"image": null, "plan_name_en": "Daily Fresh Trial", "plan_name_hi": "दैनिक ताजा ट्रायल", "desc_en": "One week trial of fresh milk", "desc_hi": "ताजा दूध का एक सप्ताह का परीक्षण", "category": "Monthly Essentials", "is_best_value": false, "discount": null, "original_price": "350.00", "unit": "Weekly", "frequency_en": "Monthly", "frequency_hi": "मासिक", "slot_en": "Morning", "slot_hi": "सुबह", "status_en": "Active", "status_hi": "सक्रिय", "product": 1, "quantity_litres": 1, "frequency": "monthly", "slot": "morning", "status": "active", "created_at": "2026-02-27T18:00:51.414Z", "updated_at": "2026-03-15T09:33:25.515Z", "total_amount": "300.00"}}, {"model": "support.faq", "pk": 2, "fields": {"question_en": "How to change delivery time?", "question_hi": "डिलीवरी का समय कैसे बदलें?", "answer_en": "To change your delivery time, go to 'Daily Milk Schedule' or 'Active Subscriptions', select your plan, and update the delivery slot (Morning/Evening) as per your preference.", "answer_hi": "अपने डिलीवरी समय को बदलने के लिए, 'डेली मिल्क शेड्यूल' या 'एक्टिव सब्सक्रिप्शन' पर जाएं, अपना प्लान चुनें और अपनी पसंद के अनुसार डिलीवरी स्लॉट (सुबह/शाम) अपडेट करें।", "created_at": "2026-02-27T17:15:33.934Z"}}, {"model": "support.faq", "pk": 3, "fields": {"question_en": "Payment methods accepted?", "question_hi": "भुगतान के तरीके स्वीकार किए गए?", "answer_en": "We accept all major credit/debit cards, UPI, and digital wallets like PhonePe, Paytm, and Google Pay. You can manage your default payment method in the 'Payments' section.", "answer_hi": "हम सभी प्रमुख क्रेडिट/डेबिट कार्ड, यूपीआई और PhonePe, Paytm और Google Pay जैसे डिजिटल वॉलेट स्वीकार करते हैं। आप 'भुगतान' अनुभाग में अपनी डिफ़ॉल्ट भुगतान विधि प्रबंधित कर सकते हैं।", "created_at": "2026-02-27T17:17:35.879Z"}}, {"model": "support.faq", "pk": 4, "fields": {"question_en": "How to pause subscription?", "question_hi": "सदस्यता को कैसे रोकें?", "answer_en": "You can pause your subscription anytime from the 'Active Subscriptions' screen. Select the plan you wish to pause and toggle the 'Pause' button. You won't be charged for the paused days.", "answer_hi": "आप 'सक्रिय सदस्यताएँ' स्क्रीन से अपनी सदस्यता को कभी भी रोक सकते हैं। जिस प्लान को आप रोकना चाहते हैं उसे चुनें और 'रोकें' बटन को दबाएँ। रोके गए दिनों के लिए आपसे कोई शुल्क नहीं लिया जाएगा।", "created_at": "2026-02-27T17:19:32.760Z"}}, {"model": "support.faq", "pk": 5, "fields": {"question_en": "What is the quality of milk?", "question_hi": "दूध की गुणवत्ता कैसी है?", "answer_en": "Our milk is sourced directly from certified organic farms, tested for over 20+ purity parameters, and delivered fresh within hours of milking.", "answer_hi": "हमारा दूध सीधे प्रमाणित जैविक फार्मों से प्राप्त किया जाता है, 20 से अधिक शुद्धता मानकों पर परखा जाता है, और दुहने के कुछ ही घंटों के भीतर ताजा वितरित किया जाता है।", "created_at": "2026-02-27T17:21:04.686Z"}}, {"model": "support.faq", "pk": 6, "fields": {"question_en": "Can I order extra items daily?", "question_hi": "क्या मैं प्रतिदिन अतिरिक्त सामान ऑर्डर कर सकता हूँ?", "answer_en": "Yes! You can add one-time items to your next morning's delivery by browsing our products and adding them to the cart before the cut-off time (usually 11:00 PM).", "answer_hi": "जी हां! आप हमारे उत्पादों को ब्राउज़ करके और कट-ऑफ समय (आमतौर पर रात 11:00 बजे) से पहले उन्हें कार्ट में जोड़कर अगली सुबह की डिलीवरी में एक बार की वस्तुएं शामिल कर सकते हैं।", "created_at": "2026-02-27T17:23:12.948Z"}}, {"model": "support.supportmessage", "pk": 1, "fields": {"user": null, "name": "arkan", "phone": "33", "message": "Product is not found", "is_resolved": true, "created_at": "2026-02-26T06:16:43.510Z"}}, {"model": "users.user", "pk": 30, "fields": {"password": "pbkdf2_sha256$1000000$9GgIoSxUPL9wRsCMaszqsS$L7jHPm5dxRkWggJoQ7ot2FBQlJ+wsVuNV+eizngjF9M=", "last_login": "2026-03-26T05:16:40.821Z", "is_superuser": true, "is_staff": true, "is_active": true, "date_joined": "2026-03-26T05:15:54.161Z", "email": "arkannshaikh07@gmail.com", "user_id": null, "full_name": "", "role": "customer", "phone": null, "profile_image": "", "push_token": null, "groups": [], "user_permissions": []}}, {"model": "users.user", "pk": 31, "fields": {"password": "pbkdf2_sha256$1000000$RNRDwMuHz2ozeWHwevP3NO$Bv50pLxcHLIrrhb3mi4PF9v97860NIJrJPRZVa4JRDI=", "last_login": "2026-03-29T11:36:35.881Z", "is_superuser": false, "is_staff": false, "is_active": true, "date_joined": "2026-03-26T06:43:41.242Z", "email": "1234567890@noemail.local", "user_id": "CUST-2026-4326", "full_name": "Arkan Shaikh", "role": "customer", "phone": "1234567890", "profile_image": "", "push_token": null, "groups": [], "user_permissions": []}}, {"model": "users.user", "pk": 32, "fields": {"password": "pbkdf2_sha256$1000000$bJuFyKnFTNDNMBgHWxQCSz$3uigrLIhMszo+ac/kwr9EhiTewzoJUW8OmnnRqG+o9w=", "last_login": "2026-03-28T21:41:23.850Z", "is_superuser": false, "is_staff": false, "is_active": true, "date_joined": "2026-03-26T07:28:04.997Z", "email": "arkansshaikh07@gmail.com", "user_id": "VEN-2026-9109", "full_name": "Arkan Shaikh", "role": "vendor", "phone": "9876543210", "profile_image": "", "push_token": null, "groups": [], "user_permissions": []}}, {"model": "users.customer", "pk": 1, "fields": {"cust_id": "CUST-2026-4326", "name": "Arkan Shaikh", "email": null, "phone": "1234567890", "password": "arkan07", "otp_code": "1234", "otp_expiry": "2026-03-26T06:53:35.250Z", "is_verified": true, "created_at": "2026-03-26T06:32:39.058Z"}}, {"model": "users.customer", "pk": 2, "fields": {"cust_id": "CUST-2026-8054", "name": "Test User", "email": null, "phone": "0987654321", "password": "password123", "otp_code": "1234", "otp_expiry": "2026-03-26T06:51:28.834Z", "is_verified": false, "created_at": "2026-03-26T06:38:28.334Z"}}, {"model": "users.address", "pk": 5, "fields": {"user": 31, "full_name": null, "phone": null, "address": "46WP+MG9", "city": "Lasalgaon", "pincode": "422306", "address_type": "Home", "is_default": false}}, {"model": "users.vendor", "pk": 1, "fields": {"vendor_id": "VEN-2026-5282", "name": "Kkhh", "phone": "3692581470", "email": "arkannshaikh07@gmail.com", "password": "vrndor07", "personal_id_proof": "", "shop_name": "Shop 1", "shop_address": "Nashik", "shop_location": "422306", "shop_id_proof": "", "tagline": null, "description": null, "website": null, "instagram": null, "facebook": null, "banner_image": "", "logo_image": "", "business_name": null, "gst_number": "Ghjkkmn", "pan_number": "Bvghjj", "fssai_license": "Vbjkkj", "bank_name": null, "account_holder_name": null, "account_number": "999668", "ifsc_code": "Vbjjv", "account_type": null, "bank_branch": null, "verified": true, "is_active": true, "created_at": "2026-03-20T15:16:05.089Z", "updated_at": "2026-03-26T10:11:53.042Z"}}, {"model": "users.vendor", "pk": 2, "fields": {"vendor_id": "VEN-2026-7072", "name": "Arkan", "phone": "9822758580", "email": "arkansshaikh07@gmail.com", "password": "vendor07", "personal_id_proof": "", "shop_name": "Shop 1", "shop_address": "Lasalgaon", "shop_location": "422306", "shop_id_proof": "", "tagline": null, "description": null, "website": null, "instagram": null, "facebook": null, "banner_image": "", "logo_image": "", "business_name": null, "gst_number": "Hhfcvbjjg", "pan_number": "Bjjjhfgb", "fssai_license": "Bhjjhfvbn", "bank_name": null, "account_holder_name": null, "account_number": "996656", "ifsc_code": "Vvhjk", "account_type": null, "bank_branch": null, "verified": true, "is_active": true, "created_at": "2026-03-20T16:15:10.752Z", "updated_at": "2026-03-26T10:11:53.110Z"}}, {"model": "users.vendor", "pk": 3, "fields": {"vendor_id": "VEN-2026-8557", "name": "Faizan", "phone": "0000000000", "email": "arkansshaikh07@gmail.com", "password": "vendor07", "personal_id_proof": "", "shop_name": "Shop 2", "shop_address": "Lasalgaon", "shop_location": "422306", "shop_id_proof": "", "tagline": null, "description": null, "website": null, "instagram": null, "facebook": null, "banner_image": "", "logo_image": "", "business_name": null, "gst_number": "Bhjnhvgf", "pan_number": "Hhgdvjjg", "fssai_license": "Jjhgfryu", "bank_name": null, "account_holder_name": null, "account_number": "998566998", "ifsc_code": "Jhgbnj", "account_type": null, "bank_branch": null, "verified": true, "is_active": true, "created_at": "2026-03-20T16:35:38.949Z", "updated_at": "2026-03-26T10:11:53.118Z"}}, {"model": "users.vendor", "pk": 4, "fields": {"vendor_id": "VEN-2026-1459", "name": "Faizan", "phone": "9209494261", "email": "arkannshaikh07@gmail.com", "password": "arkan07", "personal_id_proof": "", "shop_name": "Shop 3", "shop_address": "Nashik", "shop_location": "422306", "shop_id_proof": "", "tagline": null, "description": null, "website": null, "instagram": null, "facebook": null, "banner_image": "", "logo_image": "", "business_name": null, "gst_number": "Hjknvff", "pan_number": "Hhkknn", "fssai_license": "Kkhgff", "bank_name": null, "account_holder_name": null, "account_number": "699885", "ifsc_code": "Vvhjj", "account_type": null, "bank_branch": null, "verified": true, "is_active": true, "created_at": "2026-03-20T16:41:07.326Z", "updated_at": "2026-03-26T10:11:53.122Z"}}, {"model": "users.vendor", "pk": 5, "fields": {"vendor_id": "VEN-2026-9109", "name": "Arkan Shaikh", "phone": "9876543210", "email": "arkansshaikh07@gmail.com", "password": "arkan07", "personal_id_proof": "", "shop_name": "Milk", "shop_address": "Lasalgaon", "shop_location": "422306", "shop_id_proof": "", "tagline": "Hhh", "description": "Hhjk", "website": null, "instagram": "", "facebook": "", "banner_image": "", "logo_image": "", "business_name": null, "gst_number": "66665", "pan_number": "Hhgbn", "fssai_license": "Jjjb", "bank_name": "HDFC", "account_holder_name": "Arkan Shaikh", "account_number": "66699", "ifsc_code": "Ghukkn", "account_type": "", "bank_branch": "", "verified": true, "is_active": true, "created_at": "2026-03-26T06:58:01.181Z", "updated_at": "2026-03-26T11:15:09.299Z"}}, {"model": "users.vendor", "pk": 6, "fields": {"vendor_id": "VEN-2026-4396", "name": "Ffgh", "phone": "9822758580", "email": "arkannshaikh07@gmail.com", "password": "arkan07", "personal_id_proof": "", "shop_name": "Kkkkk", "shop_address": "Vv nnjhb", "shop_location": "422306", "shop_id_proof": "", "tagline": null, "description": null, "website": null, "instagram": null, "facebook": null, "banner_image": "", "logo_image": "", "business_name": null, "gst_number": "", "pan_number": "", "fssai_license": "", "bank_name": null, "account_holder_name": null, "account_number": "", "ifsc_code": "", "account_type": null, "bank_branch": null, "verified": false, "is_active": true, "created_at": "2026-03-28T20:17:15.577Z", "updated_at": "2026-03-28T20:17:15.577Z"}}, {"model": "promotion.banner", "pk": 1, "fields": {"title_en": "Fresh Milk Daily", "title_hi": "ताज़ा दूध रोज़ाना", "subtitle_en": "Subscribe & Save 10% Every Month", "subtitle_hi": "सब्सक्राइब करें और हर महीने 10% बचाएं", "color": "bg-purple-500", "image": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&w=400&q=80", "link_url": null, "is_active": true, "order": 0, "created_at": "2026-03-10T09:45:57.678Z", "products": [1, 2]}}, {"model": "promotion.banner", "pk": 2, "fields": {"title_en": "Traditional Ghee", "title_hi": "पारंपरिक घी", "subtitle_en": "The Purity of Bilona Method", "subtitle_hi": "बिलोना विधि की शुद्धता", "color": "bg-orange-500", "image": "https://images.unsplash.com/photo-1625944525335-473db7a5f4c5?auto=format&fit=crop&w=600&h=600&q=80", "link_url": null, "is_active": true, "order": 0, "created_at": "2026-03-10T09:45:57.688Z", "products": [8]}}, {"model": "promotion.banner", "pk": 3, "fields": {"title_en": "Breakfast Essentials", "title_hi": "नाश्ते की ज़रूरी चीज़ें", "subtitle_en": "Eggs & Butter Delivered by 7 AM", "subtitle_hi": "अंडे और मक्खन सुबह 7 बजे तक पहुँचाए जाएँगे", "color": "bg-green-600", "image": "https://images.unsplash.com/photo-1506976785307-8732e854ad03?auto=format&fit=crop&w=800&q=80", "link_url": null, "is_active": true, "order": 0, "created_at": "2026-03-10T09:45:57.692Z", "products": [8, 6]}}, {"model": "promotion.banner", "pk": 4, "fields": {"title_en": "Summer Chills", "title_hi": "गर्मियों की ठंडक", "subtitle_en": "Refreshing Beverages & Yogurts", "subtitle_hi": "ताज़ा पेय और दही", "color": "bg-blue-600", "image": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=800&q=80", "link_url": null, "is_active": true, "order": 0, "created_at": "2026-03-10T09:45:57.696Z", "products": [9]}}]
+[
+  {
+    "model": "product.category",
+    "pk": 1,
+    "fields": {
+      "name_en": "Milk",
+      "name_hi": "\u0926\u0942\u0927"
+    }
+  },
+  {
+    "model": "product.category",
+    "pk": 2,
+    "fields": {
+      "name_en": "Ghee",
+      "name_hi": "\u0918\u0940"
+    }
+  },
+  {
+    "model": "product.category",
+    "pk": 3,
+    "fields": {
+      "name_en": "Butter",
+      "name_hi": "\u092e\u0915\u094d\u0916\u0928"
+    }
+  },
+  {
+    "model": "product.category",
+    "pk": 4,
+    "fields": {
+      "name_en": "Curd",
+      "name_hi": "\u0926\u0939\u0940"
+    }
+  },
+  {
+    "model": "product.category",
+    "pk": 5,
+    "fields": {
+      "name_en": "Paneer",
+      "name_hi": "\u092a\u0928\u0940\u0930"
+    }
+  },
+  {
+    "model": "product.category",
+    "pk": 6,
+    "fields": {
+      "name_en": "Eggs",
+      "name_hi": "\u0905\u0902\u0921\u0947"
+    }
+  },
+  {
+    "model": "product.shopdetail",
+    "pk": 6,
+    "fields": {
+      "vendor": "VEN-2026-5282",
+      "shop_name_en": "Shop 1",
+      "shop_name_hi": null,
+      "address_en": "Nashik",
+      "address_hi": null,
+      "rating": "4.5",
+      "opening_time": "6:00 AM",
+      "closing_time": "9:00 PM"
+    }
+  },
+  {
+    "model": "product.shopdetail",
+    "pk": 7,
+    "fields": {
+      "vendor": "VEN-2026-7072",
+      "shop_name_en": "Shop 1",
+      "shop_name_hi": null,
+      "address_en": "Lasalgaon",
+      "address_hi": null,
+      "rating": "4.5",
+      "opening_time": "6:00 AM",
+      "closing_time": "9:00 PM"
+    }
+  },
+  {
+    "model": "product.shopdetail",
+    "pk": 8,
+    "fields": {
+      "vendor": "VEN-2026-8557",
+      "shop_name_en": "Shop 2",
+      "shop_name_hi": null,
+      "address_en": "Lasalgaon",
+      "address_hi": null,
+      "rating": "4.5",
+      "opening_time": "6:00 AM",
+      "closing_time": "9:00 PM"
+    }
+  },
+  {
+    "model": "product.shopdetail",
+    "pk": 9,
+    "fields": {
+      "vendor": "VEN-2026-1459",
+      "shop_name_en": "Shop 3",
+      "shop_name_hi": null,
+      "address_en": "Nashik",
+      "address_hi": null,
+      "rating": "4.5",
+      "opening_time": "6:00 AM",
+      "closing_time": "9:00 PM"
+    }
+  },
+  {
+    "model": "product.shopdetail",
+    "pk": 10,
+    "fields": {
+      "vendor": "VEN-2026-9109",
+      "shop_name_en": "Milk",
+      "shop_name_hi": null,
+      "address_en": "Lasalgaon",
+      "address_hi": "",
+      "rating": "4.5",
+      "opening_time": "6:00 AM",
+      "closing_time": "9:00 PM"
+    }
+  },
+  {
+    "model": "product.nutrition",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "calories": "62",
+      "protein": "3.2",
+      "fat": "3.6",
+      "carbs": "4.8",
+      "per_unit": "100ml"
+    }
+  },
+  {
+    "model": "product.nutrition",
+    "pk": 2,
+    "fields": {
+      "product": 2,
+      "calories": "92",
+      "protein": "3.8",
+      "fat": "6.9",
+      "carbs": "5.2",
+      "per_unit": "100ml"
+    }
+  },
+  {
+    "model": "product.nutrition",
+    "pk": 5,
+    "fields": {
+      "product": 7,
+      "calories": "717",
+      "protein": "0.9",
+      "fat": "81.1",
+      "carbs": "0.1",
+      "per_unit": "100g"
+    }
+  },
+  {
+    "model": "product.nutrition",
+    "pk": 6,
+    "fields": {
+      "product": 8,
+      "calories": "883",
+      "protein": "0.3",
+      "fat": "99.5",
+      "carbs": "0",
+      "per_unit": "100ml"
+    }
+  },
+  {
+    "model": "product.nutrition",
+    "pk": 7,
+    "fields": {
+      "product": 9,
+      "calories": "78",
+      "protein": "6.3",
+      "fat": "5.3",
+      "carbs": "0.6",
+      "per_unit": "1 egg"
+    }
+  },
+  {
+    "model": "product.nutrition",
+    "pk": 8,
+    "fields": {
+      "product": 6,
+      "calories": "265",
+      "protein": "18.3",
+      "fat": "20.8",
+      "carbs": "1.2",
+      "per_unit": "100g"
+    }
+  },
+  {
+    "model": "product.nutrition",
+    "pk": 9,
+    "fields": {
+      "product": 4,
+      "calories": "61",
+      "protein": "3.5",
+      "fat": "3.3",
+      "carbs": "4.7",
+      "per_unit": "100ml"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 1,
+    "fields": {
+      "category": 1,
+      "shop_detail": 10,
+      "name_en": "Fresh Cow Milk",
+      "name_hi": "\u0924\u093e\u091c\u093e \u0917\u093e\u092f \u0915\u093e \u0926\u0942\u0927",
+      "description_en": "Organic whole cow milk, pasteurized and chilled.",
+      "description_hi": "\u091c\u0948\u0935\u093f\u0915 \u092a\u0942\u0930\u094d\u0923 \u0917\u093e\u092f \u0915\u093e \u0926\u0942\u0927, \u092a\u093e\u0936\u094d\u091a\u0941\u0930\u0940\u0915\u0943\u0924 \u0914\u0930 \u0920\u0902\u0921\u093e \u0915\u093f\u092f\u093e \u0939\u0941\u0906\u0964",
+      "price": "65.00",
+      "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=600&h=600&q=80",
+      "default_quantity": "1",
+      "discount": "10",
+      "stock_quantity": 70,
+      "is_active": true,
+      "created_at": "2026-03-26T11:39:20.927Z",
+      "updated_at": "2026-03-27T15:38:30.347Z",
+      "vendor_id": "VEN-2026-9109"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 2,
+    "fields": {
+      "category": 1,
+      "shop_detail": 8,
+      "name_en": "Creamy Buffalo Milk",
+      "name_hi": "\u092e\u0932\u093e\u0908\u0926\u093e\u0930 \u092d\u0948\u0902\u0938 \u0915\u093e \u0926\u0942\u0927",
+      "description_en": "High-fat buffalo milk, perfect for tea and desserts.",
+      "description_hi": "\u0909\u091a\u094d\u091a \u0935\u0938\u093e \u0935\u093e\u0932\u093e \u092d\u0948\u0902\u0938 \u0915\u093e \u0926\u0942\u0927, \u091a\u093e\u092f \u0914\u0930 \u092e\u093f\u0920\u093e\u0907\u092f\u094b\u0902 \u0915\u0947 \u0932\u093f\u090f \u090f\u0915\u0926\u092e \u0938\u0939\u0940\u0964",
+      "price": "85.00",
+      "image": "https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=600&h=600&q=80",
+      "default_quantity": "1",
+      "discount": null,
+      "stock_quantity": 0,
+      "is_active": true,
+      "created_at": "2026-03-26T11:39:20.927Z",
+      "updated_at": "2026-03-27T15:38:30.343Z",
+      "vendor_id": "VEN-2026-8557"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 4,
+    "fields": {
+      "category": 4,
+      "shop_detail": 9,
+      "name_en": "Probiotic Curd",
+      "name_hi": "\u092a\u094d\u0930\u094b\u092c\u093e\u092f\u094b\u091f\u093f\u0915 \u0926\u0939\u0940",
+      "description_en": "Thick, creamy curd with active cultures.",
+      "description_hi": "\u0938\u0915\u094d\u0930\u093f\u092f \u0915\u0932\u094d\u091a\u0930 \u0915\u0947 \u0938\u093e\u0925 \u0917\u093e\u0922\u093c\u093e, \u092e\u0932\u093e\u0908\u0926\u093e\u0930 \u0926\u0939\u0940\u0964",
+      "price": "45.00",
+      "image": "https://images.unsplash.com/photo-1571212515416-fef01fc43637?auto=format&fit=crop&w=600&h=600&q=80",
+      "default_quantity": "500",
+      "discount": null,
+      "stock_quantity": 0,
+      "is_active": true,
+      "created_at": "2026-03-26T11:39:20.927Z",
+      "updated_at": "2026-03-27T15:38:30.340Z",
+      "vendor_id": "VEN-2026-1459"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 6,
+    "fields": {
+      "category": 5,
+      "shop_detail": 10,
+      "name_en": "Fresh Malai Paneer",
+      "name_hi": "\u0924\u093e\u091c\u093e \u092e\u0932\u093e\u0908 \u092a\u0928\u0940\u0930",
+      "description_en": "Soft, melt-in-the-mouth cottage cheese cubes.",
+      "description_hi": "\u092e\u0941\u0932\u093e\u092f\u092e, \u092e\u0941\u0901\u0939 \u092e\u0947\u0902 \u0918\u0941\u0932 \u091c\u093e\u0928\u0947 \u0935\u093e\u0932\u0947 \u092a\u0928\u0940\u0930 \u0915\u0947 \u091f\u0941\u0915\u0921\u093c\u0947\u0964",
+      "price": "120.00",
+      "image": "https://images.unsplash.com/photo-1604908554007-7f9d1b9f7c3f?auto=format&fit=crop&w=600&h=600&q=80",
+      "default_quantity": "200",
+      "discount": "10",
+      "stock_quantity": 88,
+      "is_active": true,
+      "created_at": "2026-03-26T11:39:20.927Z",
+      "updated_at": "2026-03-27T15:38:30.349Z",
+      "vendor_id": "VEN-2026-9109"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 7,
+    "fields": {
+      "category": 2,
+      "shop_detail": 8,
+      "name_en": "Farmstead Butter",
+      "name_hi": "\u092b\u093e\u0930\u094d\u092e\u0938\u094d\u091f\u0947\u0921 \u092e\u0915\u094d\u0916\u0928",
+      "description_en": "Hand-churned unsalted white butter.",
+      "description_hi": "\u0939\u093e\u0925 \u0938\u0947 \u092e\u0925\u093e \u0939\u0941\u0906 \u092c\u093f\u0928\u093e \u0928\u092e\u0915 \u0935\u093e\u0932\u093e \u0938\u092b\u0947\u0926 \u092e\u0915\u094d\u0916\u0928\u0964",
+      "price": "210.00",
+      "image": "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?auto=format&fit=crop&w=600&h=600&q=80",
+      "default_quantity": "250",
+      "discount": null,
+      "stock_quantity": 0,
+      "is_active": true,
+      "created_at": "2026-03-26T11:39:20.927Z",
+      "updated_at": "2026-03-27T15:38:30.329Z",
+      "vendor_id": "VEN-2026-8557"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 8,
+    "fields": {
+      "category": 2,
+      "shop_detail": 6,
+      "name_en": "Pure Desi Ghee",
+      "name_hi": "\u0936\u0941\u0926\u094d\u0927 \u0926\u0947\u0938\u0940 \u0918\u0940",
+      "description_en": "The traditional Bilona method clarified butter.",
+      "description_hi": "\u092a\u093e\u0930\u0902\u092a\u0930\u093f\u0915 \u092c\u093f\u0932\u094b\u0928\u093e \u0935\u093f\u0927\u093f \u0926\u094d\u0935\u093e\u0930\u093e \u0938\u094d\u092a\u0937\u094d\u091f \u092e\u0915\u094d\u0916\u0928 (\u0918\u0940)\u0964",
+      "price": "650.00",
+      "image": "https://images.unsplash.com/photo-1615485737651-0e87d99f3c4f?auto=format&fit=crop&w=600&h=600&q=80",
+      "default_quantity": "500",
+      "discount": null,
+      "stock_quantity": 0,
+      "is_active": true,
+      "created_at": "2026-03-26T11:39:20.927Z",
+      "updated_at": "2026-03-27T15:38:30.353Z",
+      "vendor_id": "VEN-2026-5282"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 9,
+    "fields": {
+      "category": 6,
+      "shop_detail": 6,
+      "name_en": "Farm Fresh Brown Eggs",
+      "name_hi": "\u092b\u093e\u0930\u094d\u092e \u092b\u094d\u0930\u0947\u0936 \u092c\u094d\u0930\u093e\u0909\u0928 \u0905\u0902\u0921\u0947",
+      "description_en": "Antibiotic-free, protein-rich farm eggs.",
+      "description_hi": "\u090f\u0902\u091f\u0940\u092c\u093e\u092f\u094b\u091f\u093f\u0915-\u092e\u0941\u0915\u094d\u0924, \u092a\u094d\u0930\u094b\u091f\u0940\u0928 \u0938\u0947 \u092d\u0930\u092a\u0942\u0930 \u092b\u093e\u0930\u094d\u092e \u0905\u0902\u0921\u0947\u0964",
+      "price": "90.00",
+      "image": "https://images.unsplash.com/photo-1506976785307-8732e854ad03?auto=format&fit=crop&w=600&h=600&q=80",
+      "default_quantity": "6",
+      "discount": "20",
+      "stock_quantity": 0,
+      "is_active": true,
+      "created_at": "2026-03-26T11:39:20.927Z",
+      "updated_at": "2026-03-27T15:38:30.351Z",
+      "vendor_id": "VEN-2026-5282"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 29,
+    "fields": {
+      "user": 31,
+      "shipping_address": null,
+      "full_name": "Arkan Shaikh",
+      "phone": "1234567890",
+      "address": "46WQ+P45, Nashik Division, Lasalgaon, Lasalgaon - 422306",
+      "city": "Lasalgaon",
+      "pincode": "422306",
+      "total_amount": "67.00",
+      "payment_method": "cod",
+      "status": "confirmed",
+      "created_at": "2026-03-26T06:51:18.391Z"
+    }
+  },
+  {
+    "model": "orders.orderitem",
+    "pk": 36,
+    "fields": {
+      "order": 29,
+      "product": 1,
+      "quantity": 1,
+      "price": "65.00",
+      "vendor_id": "VEN-2026-9109"
+    }
+  },
+  {
+    "model": "subscriptions.subscription",
+    "pk": 5,
+    "fields": {
+      "image": null,
+      "plan_name_en": "Monthly Basic",
+      "plan_name_hi": "\u092e\u093e\u0938\u093f\u0915 \u092c\u0947\u0938\u093f\u0915",
+      "desc_en": "Essential milk delivery for small families",
+      "desc_hi": "\u091b\u094b\u091f\u0947 \u092a\u0930\u093f\u0935\u093e\u0930\u094b\u0902 \u0915\u0947 \u0932\u093f\u090f \u0906\u0935\u0936\u094d\u092f\u0915 \u0926\u0942\u0927 \u0935\u093f\u0924\u0930\u0923",
+      "category": "Monthly Essentials",
+      "is_best_value": false,
+      "discount": null,
+      "original_price": "1500.00",
+      "unit": "Monthly",
+      "frequency_en": "Monthly",
+      "frequency_hi": "\u092e\u093e\u0938\u093f\u0915",
+      "slot_en": "Morning",
+      "slot_hi": "\u0938\u0941\u092c\u0939",
+      "status_en": "Active",
+      "status_hi": "\u0938\u0915\u094d\u0930\u093f\u092f",
+      "product": 1,
+      "quantity_litres": 1,
+      "frequency": "monthly",
+      "slot": "morning",
+      "status": "active",
+      "created_at": "2026-02-27T18:00:51.391Z",
+      "updated_at": "2026-02-27T18:00:51.391Z",
+      "total_amount": "1200.00"
+    }
+  },
+  {
+    "model": "subscriptions.subscription",
+    "pk": 6,
+    "fields": {
+      "image": null,
+      "plan_name_en": "Monthly Organic",
+      "plan_name_hi": "\u092e\u093e\u0938\u093f\u0915 \u0911\u0930\u094d\u0917\u0947\u0928\u093f\u0915",
+      "desc_en": "Pure organic milk for health-conscious users",
+      "desc_hi": "\u0938\u094d\u0935\u093e\u0938\u094d\u0925\u094d\u092f \u0915\u0947 \u092a\u094d\u0930\u0924\u093f \u091c\u093e\u0917\u0930\u0942\u0915 \u0909\u092a\u092f\u094b\u0917\u0915\u0930\u094d\u0924\u093e\u0913\u0902 \u0915\u0947 \u0932\u093f\u090f \u0936\u0941\u0926\u094d\u0927 \u091c\u0948\u0935\u093f\u0915 \u0926\u0942\u0927",
+      "category": "Monthly Organic",
+      "is_best_value": true,
+      "discount": "15% OFF",
+      "original_price": "2200.00",
+      "unit": "Monthly",
+      "frequency_en": "Monthly",
+      "frequency_hi": "\u092e\u093e\u0938\u093f\u0915",
+      "slot_en": "Morning",
+      "slot_hi": "\u0938\u0941\u092c\u0939",
+      "status_en": "Active",
+      "status_hi": "\u0938\u0915\u094d\u0930\u093f\u092f",
+      "product": 1,
+      "quantity_litres": 1,
+      "frequency": "monthly",
+      "slot": "morning",
+      "status": "active",
+      "created_at": "2026-02-27T18:00:51.403Z",
+      "updated_at": "2026-02-27T18:00:51.403Z",
+      "total_amount": "1800.00"
+    }
+  },
+  {
+    "model": "subscriptions.subscription",
+    "pk": 7,
+    "fields": {
+      "image": null,
+      "plan_name_en": "Yearly Family Premium",
+      "plan_name_hi": "\u0935\u093e\u0930\u094d\u0937\u093f\u0915 \u092b\u0948\u092e\u093f\u0932\u0940 \u092a\u094d\u0930\u0940\u092e\u093f\u092f\u092e",
+      "desc_en": "Best value for big families. Save more annually!",
+      "desc_hi": "\u092c\u0921\u093c\u0947 \u092a\u0930\u093f\u0935\u093e\u0930\u094b\u0902 \u0915\u0947 \u0932\u093f\u090f \u0938\u092c\u0938\u0947 \u0905\u091a\u094d\u091b\u093e \u092e\u0942\u0932\u094d\u092f\u0964 \u0938\u093e\u0932\u093e\u0928\u093e \u0905\u0927\u093f\u0915 \u092c\u091a\u0924 \u0915\u0930\u0947\u0902!",
+      "category": "Yearly Family Packs",
+      "is_best_value": true,
+      "discount": "20% OFF",
+      "original_price": "18000.00",
+      "unit": "Yearly",
+      "frequency_en": "Monthly",
+      "frequency_hi": "\u092e\u093e\u0938\u093f\u0915",
+      "slot_en": "Morning",
+      "slot_hi": "\u0938\u0941\u092c\u0939",
+      "status_en": "Active",
+      "status_hi": "\u0938\u0915\u094d\u0930\u093f\u092f",
+      "product": 1,
+      "quantity_litres": 1,
+      "frequency": "yearly",
+      "slot": "morning",
+      "status": "active",
+      "created_at": "2026-02-27T18:00:51.408Z",
+      "updated_at": "2026-03-15T09:32:24.806Z",
+      "total_amount": "15000.00"
+    }
+  },
+  {
+    "model": "subscriptions.subscription",
+    "pk": 8,
+    "fields": {
+      "image": null,
+      "plan_name_en": "Daily Fresh Trial",
+      "plan_name_hi": "\u0926\u0948\u0928\u093f\u0915 \u0924\u093e\u091c\u093e \u091f\u094d\u0930\u093e\u092f\u0932",
+      "desc_en": "One week trial of fresh milk",
+      "desc_hi": "\u0924\u093e\u091c\u093e \u0926\u0942\u0927 \u0915\u093e \u090f\u0915 \u0938\u092a\u094d\u0924\u093e\u0939 \u0915\u093e \u092a\u0930\u0940\u0915\u094d\u0937\u0923",
+      "category": "Monthly Essentials",
+      "is_best_value": false,
+      "discount": null,
+      "original_price": "350.00",
+      "unit": "Weekly",
+      "frequency_en": "Monthly",
+      "frequency_hi": "\u092e\u093e\u0938\u093f\u0915",
+      "slot_en": "Morning",
+      "slot_hi": "\u0938\u0941\u092c\u0939",
+      "status_en": "Active",
+      "status_hi": "\u0938\u0915\u094d\u0930\u093f\u092f",
+      "product": 1,
+      "quantity_litres": 1,
+      "frequency": "monthly",
+      "slot": "morning",
+      "status": "active",
+      "created_at": "2026-02-27T18:00:51.414Z",
+      "updated_at": "2026-03-15T09:33:25.515Z",
+      "total_amount": "300.00"
+    }
+  },
+  {
+    "model": "support.faq",
+    "pk": 2,
+    "fields": {
+      "question_en": "How to change delivery time?",
+      "question_hi": "\u0921\u093f\u0932\u0940\u0935\u0930\u0940 \u0915\u093e \u0938\u092e\u092f \u0915\u0948\u0938\u0947 \u092c\u0926\u0932\u0947\u0902?",
+      "answer_en": "To change your delivery time, go to 'Daily Milk Schedule' or 'Active Subscriptions', select your plan, and update the delivery slot (Morning/Evening) as per your preference.",
+      "answer_hi": "\u0905\u092a\u0928\u0947 \u0921\u093f\u0932\u0940\u0935\u0930\u0940 \u0938\u092e\u092f \u0915\u094b \u092c\u0926\u0932\u0928\u0947 \u0915\u0947 \u0932\u093f\u090f, '\u0921\u0947\u0932\u0940 \u092e\u093f\u0932\u094d\u0915 \u0936\u0947\u0921\u094d\u092f\u0942\u0932' \u092f\u093e '\u090f\u0915\u094d\u091f\u093f\u0935 \u0938\u092c\u094d\u0938\u0915\u094d\u0930\u093f\u092a\u094d\u0936\u0928' \u092a\u0930 \u091c\u093e\u090f\u0902, \u0905\u092a\u0928\u093e \u092a\u094d\u0932\u093e\u0928 \u091a\u0941\u0928\u0947\u0902 \u0914\u0930 \u0905\u092a\u0928\u0940 \u092a\u0938\u0902\u0926 \u0915\u0947 \u0905\u0928\u0941\u0938\u093e\u0930 \u0921\u093f\u0932\u0940\u0935\u0930\u0940 \u0938\u094d\u0932\u0949\u091f (\u0938\u0941\u092c\u0939/\u0936\u093e\u092e) \u0905\u092a\u0921\u0947\u091f \u0915\u0930\u0947\u0902\u0964",
+      "created_at": "2026-02-27T17:15:33.934Z"
+    }
+  },
+  {
+    "model": "support.faq",
+    "pk": 3,
+    "fields": {
+      "question_en": "Payment methods accepted?",
+      "question_hi": "\u092d\u0941\u0917\u0924\u093e\u0928 \u0915\u0947 \u0924\u0930\u0940\u0915\u0947 \u0938\u094d\u0935\u0940\u0915\u093e\u0930 \u0915\u093f\u090f \u0917\u090f?",
+      "answer_en": "We accept all major credit/debit cards, UPI, and digital wallets like PhonePe, Paytm, and Google Pay. You can manage your default payment method in the 'Payments' section.",
+      "answer_hi": "\u0939\u092e \u0938\u092d\u0940 \u092a\u094d\u0930\u092e\u0941\u0916 \u0915\u094d\u0930\u0947\u0921\u093f\u091f/\u0921\u0947\u092c\u093f\u091f \u0915\u093e\u0930\u094d\u0921, \u092f\u0942\u092a\u0940\u0906\u0908 \u0914\u0930 PhonePe, Paytm \u0914\u0930 Google Pay \u091c\u0948\u0938\u0947 \u0921\u093f\u091c\u093f\u091f\u0932 \u0935\u0949\u0932\u0947\u091f \u0938\u094d\u0935\u0940\u0915\u093e\u0930 \u0915\u0930\u0924\u0947 \u0939\u0948\u0902\u0964 \u0906\u092a '\u092d\u0941\u0917\u0924\u093e\u0928' \u0905\u0928\u0941\u092d\u093e\u0917 \u092e\u0947\u0902 \u0905\u092a\u0928\u0940 \u0921\u093f\u092b\u093c\u0949\u0932\u094d\u091f \u092d\u0941\u0917\u0924\u093e\u0928 \u0935\u093f\u0927\u093f \u092a\u094d\u0930\u092c\u0902\u0927\u093f\u0924 \u0915\u0930 \u0938\u0915\u0924\u0947 \u0939\u0948\u0902\u0964",
+      "created_at": "2026-02-27T17:17:35.879Z"
+    }
+  },
+  {
+    "model": "support.faq",
+    "pk": 4,
+    "fields": {
+      "question_en": "How to pause subscription?",
+      "question_hi": "\u0938\u0926\u0938\u094d\u092f\u0924\u093e \u0915\u094b \u0915\u0948\u0938\u0947 \u0930\u094b\u0915\u0947\u0902?",
+      "answer_en": "You can pause your subscription anytime from the 'Active Subscriptions' screen. Select the plan you wish to pause and toggle the 'Pause' button. You won't be charged for the paused days.",
+      "answer_hi": "\u0906\u092a '\u0938\u0915\u094d\u0930\u093f\u092f \u0938\u0926\u0938\u094d\u092f\u0924\u093e\u090f\u0901' \u0938\u094d\u0915\u094d\u0930\u0940\u0928 \u0938\u0947 \u0905\u092a\u0928\u0940 \u0938\u0926\u0938\u094d\u092f\u0924\u093e \u0915\u094b \u0915\u092d\u0940 \u092d\u0940 \u0930\u094b\u0915 \u0938\u0915\u0924\u0947 \u0939\u0948\u0902\u0964 \u091c\u093f\u0938 \u092a\u094d\u0932\u093e\u0928 \u0915\u094b \u0906\u092a \u0930\u094b\u0915\u0928\u093e \u091a\u093e\u0939\u0924\u0947 \u0939\u0948\u0902 \u0909\u0938\u0947 \u091a\u0941\u0928\u0947\u0902 \u0914\u0930 '\u0930\u094b\u0915\u0947\u0902' \u092c\u091f\u0928 \u0915\u094b \u0926\u092c\u093e\u090f\u0901\u0964 \u0930\u094b\u0915\u0947 \u0917\u090f \u0926\u093f\u0928\u094b\u0902 \u0915\u0947 \u0932\u093f\u090f \u0906\u092a\u0938\u0947 \u0915\u094b\u0908 \u0936\u0941\u0932\u094d\u0915 \u0928\u0939\u0940\u0902 \u0932\u093f\u092f\u093e \u091c\u093e\u090f\u0917\u093e\u0964",
+      "created_at": "2026-02-27T17:19:32.760Z"
+    }
+  },
+  {
+    "model": "support.faq",
+    "pk": 5,
+    "fields": {
+      "question_en": "What is the quality of milk?",
+      "question_hi": "\u0926\u0942\u0927 \u0915\u0940 \u0917\u0941\u0923\u0935\u0924\u094d\u0924\u093e \u0915\u0948\u0938\u0940 \u0939\u0948?",
+      "answer_en": "Our milk is sourced directly from certified organic farms, tested for over 20+ purity parameters, and delivered fresh within hours of milking.",
+      "answer_hi": "\u0939\u092e\u093e\u0930\u093e \u0926\u0942\u0927 \u0938\u0940\u0927\u0947 \u092a\u094d\u0930\u092e\u093e\u0923\u093f\u0924 \u091c\u0948\u0935\u093f\u0915 \u092b\u093e\u0930\u094d\u092e\u094b\u0902 \u0938\u0947 \u092a\u094d\u0930\u093e\u092a\u094d\u0924 \u0915\u093f\u092f\u093e \u091c\u093e\u0924\u093e \u0939\u0948, 20 \u0938\u0947 \u0905\u0927\u093f\u0915 \u0936\u0941\u0926\u094d\u0927\u0924\u093e \u092e\u093e\u0928\u0915\u094b\u0902 \u092a\u0930 \u092a\u0930\u0916\u093e \u091c\u093e\u0924\u093e \u0939\u0948, \u0914\u0930 \u0926\u0941\u0939\u0928\u0947 \u0915\u0947 \u0915\u0941\u091b \u0939\u0940 \u0918\u0902\u091f\u094b\u0902 \u0915\u0947 \u092d\u0940\u0924\u0930 \u0924\u093e\u091c\u093e \u0935\u093f\u0924\u0930\u093f\u0924 \u0915\u093f\u092f\u093e \u091c\u093e\u0924\u093e \u0939\u0948\u0964",
+      "created_at": "2026-02-27T17:21:04.686Z"
+    }
+  },
+  {
+    "model": "support.faq",
+    "pk": 6,
+    "fields": {
+      "question_en": "Can I order extra items daily?",
+      "question_hi": "\u0915\u094d\u092f\u093e \u092e\u0948\u0902 \u092a\u094d\u0930\u0924\u093f\u0926\u093f\u0928 \u0905\u0924\u093f\u0930\u093f\u0915\u094d\u0924 \u0938\u093e\u092e\u093e\u0928 \u0911\u0930\u094d\u0921\u0930 \u0915\u0930 \u0938\u0915\u0924\u093e \u0939\u0942\u0901?",
+      "answer_en": "Yes! You can add one-time items to your next morning's delivery by browsing our products and adding them to the cart before the cut-off time (usually 11:00 PM).",
+      "answer_hi": "\u091c\u0940 \u0939\u093e\u0902! \u0906\u092a \u0939\u092e\u093e\u0930\u0947 \u0909\u0924\u094d\u092a\u093e\u0926\u094b\u0902 \u0915\u094b \u092c\u094d\u0930\u093e\u0909\u091c\u093c \u0915\u0930\u0915\u0947 \u0914\u0930 \u0915\u091f-\u0911\u092b \u0938\u092e\u092f (\u0906\u092e\u0924\u094c\u0930 \u092a\u0930 \u0930\u093e\u0924 11:00 \u092c\u091c\u0947) \u0938\u0947 \u092a\u0939\u0932\u0947 \u0909\u0928\u094d\u0939\u0947\u0902 \u0915\u093e\u0930\u094d\u091f \u092e\u0947\u0902 \u091c\u094b\u0921\u093c\u0915\u0930 \u0905\u0917\u0932\u0940 \u0938\u0941\u092c\u0939 \u0915\u0940 \u0921\u093f\u0932\u0940\u0935\u0930\u0940 \u092e\u0947\u0902 \u090f\u0915 \u092c\u093e\u0930 \u0915\u0940 \u0935\u0938\u094d\u0924\u0941\u090f\u0902 \u0936\u093e\u092e\u093f\u0932 \u0915\u0930 \u0938\u0915\u0924\u0947 \u0939\u0948\u0902\u0964",
+      "created_at": "2026-02-27T17:23:12.948Z"
+    }
+  },
+  {
+    "model": "support.supportmessage",
+    "pk": 1,
+    "fields": {
+      "user": null,
+      "name": "arkan",
+      "phone": "33",
+      "message": "Product is not found",
+      "is_resolved": true,
+      "created_at": "2026-02-26T06:16:43.510Z"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 30,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$9GgIoSxUPL9wRsCMaszqsS$L7jHPm5dxRkWggJoQ7ot2FBQlJ+wsVuNV+eizngjF9M=",
+      "last_login": "2026-03-26T05:16:40.821Z",
+      "is_superuser": true,
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2026-03-26T05:15:54.161Z",
+      "email": "arkannshaikh07@gmail.com",
+      "user_id": null,
+      "full_name": "",
+      "role": "customer",
+      "phone": null,
+      "profile_image": "",
+      "push_token": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 31,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$RNRDwMuHz2ozeWHwevP3NO$Bv50pLxcHLIrrhb3mi4PF9v97860NIJrJPRZVa4JRDI=",
+      "last_login": "2026-03-29T11:36:35.881Z",
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-03-26T06:43:41.242Z",
+      "email": "1234567890@noemail.local",
+      "user_id": "CUST-2026-4326",
+      "full_name": "Arkan Shaikh",
+      "role": "customer",
+      "phone": "1234567890",
+      "profile_image": "",
+      "push_token": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 32,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$bJuFyKnFTNDNMBgHWxQCSz$3uigrLIhMszo+ac/kwr9EhiTewzoJUW8OmnnRqG+o9w=",
+      "last_login": "2026-03-28T21:41:23.850Z",
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-03-26T07:28:04.997Z",
+      "email": "arkansshaikh07@gmail.com",
+      "user_id": "VEN-2026-9109",
+      "full_name": "Arkan Shaikh",
+      "role": "vendor",
+      "phone": "9876543210",
+      "profile_image": "",
+      "push_token": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.customer",
+    "pk": 1,
+    "fields": {
+      "cust_id": "CUST-2026-4326",
+      "name": "Arkan Shaikh",
+      "email": null,
+      "phone": "1234567890",
+      "password": "arkan07",
+      "otp_code": "1234",
+      "otp_expiry": "2026-03-26T06:53:35.250Z",
+      "is_verified": true,
+      "created_at": "2026-03-26T06:32:39.058Z"
+    }
+  },
+  {
+    "model": "users.customer",
+    "pk": 2,
+    "fields": {
+      "cust_id": "CUST-2026-8054",
+      "name": "Test User",
+      "email": null,
+      "phone": "0987654321",
+      "password": "password123",
+      "otp_code": "1234",
+      "otp_expiry": "2026-03-26T06:51:28.834Z",
+      "is_verified": false,
+      "created_at": "2026-03-26T06:38:28.334Z"
+    }
+  },
+  {
+    "model": "users.address",
+    "pk": 5,
+    "fields": {
+      "user": 31,
+      "address": "46WP+MG9",
+      "city": "Lasalgaon",
+      "pincode": "422306",
+      "address_type": "Home",
+      "is_default": false
+    }
+  },
+  {
+    "model": "users.vendor",
+    "pk": 1,
+    "fields": {
+      "vendor_id": "VEN-2026-5282",
+      "name": "Kkhh",
+      "phone": "3692581470",
+      "email": "arkannshaikh07@gmail.com",
+      "password": "vrndor07",
+      "personal_id_proof": "",
+      "shop_name": "Shop 1",
+      "shop_address": "Nashik",
+      "shop_location": "422306",
+      "shop_id_proof": "",
+      "tagline": null,
+      "description": null,
+      "website": null,
+      "instagram": null,
+      "facebook": null,
+      "banner_image": "",
+      "logo_image": "",
+      "business_name": null,
+      "gst_number": "Ghjkkmn",
+      "pan_number": "Bvghjj",
+      "fssai_license": "Vbjkkj",
+      "bank_name": null,
+      "account_holder_name": null,
+      "account_number": "999668",
+      "ifsc_code": "Vbjjv",
+      "account_type": null,
+      "bank_branch": null,
+      "verified": true,
+      "is_active": true,
+      "created_at": "2026-03-20T15:16:05.089Z",
+      "updated_at": "2026-03-26T10:11:53.042Z"
+    }
+  },
+  {
+    "model": "users.vendor",
+    "pk": 2,
+    "fields": {
+      "vendor_id": "VEN-2026-7072",
+      "name": "Arkan",
+      "phone": "9822758580",
+      "email": "arkansshaikh07@gmail.com",
+      "password": "vendor07",
+      "personal_id_proof": "",
+      "shop_name": "Shop 1",
+      "shop_address": "Lasalgaon",
+      "shop_location": "422306",
+      "shop_id_proof": "",
+      "tagline": null,
+      "description": null,
+      "website": null,
+      "instagram": null,
+      "facebook": null,
+      "banner_image": "",
+      "logo_image": "",
+      "business_name": null,
+      "gst_number": "Hhfcvbjjg",
+      "pan_number": "Bjjjhfgb",
+      "fssai_license": "Bhjjhfvbn",
+      "bank_name": null,
+      "account_holder_name": null,
+      "account_number": "996656",
+      "ifsc_code": "Vvhjk",
+      "account_type": null,
+      "bank_branch": null,
+      "verified": true,
+      "is_active": true,
+      "created_at": "2026-03-20T16:15:10.752Z",
+      "updated_at": "2026-03-26T10:11:53.110Z"
+    }
+  },
+  {
+    "model": "users.vendor",
+    "pk": 3,
+    "fields": {
+      "vendor_id": "VEN-2026-8557",
+      "name": "Faizan",
+      "phone": "0000000000",
+      "email": "arkansshaikh07@gmail.com",
+      "password": "vendor07",
+      "personal_id_proof": "",
+      "shop_name": "Shop 2",
+      "shop_address": "Lasalgaon",
+      "shop_location": "422306",
+      "shop_id_proof": "",
+      "tagline": null,
+      "description": null,
+      "website": null,
+      "instagram": null,
+      "facebook": null,
+      "banner_image": "",
+      "logo_image": "",
+      "business_name": null,
+      "gst_number": "Bhjnhvgf",
+      "pan_number": "Hhgdvjjg",
+      "fssai_license": "Jjhgfryu",
+      "bank_name": null,
+      "account_holder_name": null,
+      "account_number": "998566998",
+      "ifsc_code": "Jhgbnj",
+      "account_type": null,
+      "bank_branch": null,
+      "verified": true,
+      "is_active": true,
+      "created_at": "2026-03-20T16:35:38.949Z",
+      "updated_at": "2026-03-26T10:11:53.118Z"
+    }
+  },
+  {
+    "model": "users.vendor",
+    "pk": 4,
+    "fields": {
+      "vendor_id": "VEN-2026-1459",
+      "name": "Faizan",
+      "phone": "9209494261",
+      "email": "arkannshaikh07@gmail.com",
+      "password": "arkan07",
+      "personal_id_proof": "",
+      "shop_name": "Shop 3",
+      "shop_address": "Nashik",
+      "shop_location": "422306",
+      "shop_id_proof": "",
+      "tagline": null,
+      "description": null,
+      "website": null,
+      "instagram": null,
+      "facebook": null,
+      "banner_image": "",
+      "logo_image": "",
+      "business_name": null,
+      "gst_number": "Hjknvff",
+      "pan_number": "Hhkknn",
+      "fssai_license": "Kkhgff",
+      "bank_name": null,
+      "account_holder_name": null,
+      "account_number": "699885",
+      "ifsc_code": "Vvhjj",
+      "account_type": null,
+      "bank_branch": null,
+      "verified": true,
+      "is_active": true,
+      "created_at": "2026-03-20T16:41:07.326Z",
+      "updated_at": "2026-03-26T10:11:53.122Z"
+    }
+  },
+  {
+    "model": "users.vendor",
+    "pk": 5,
+    "fields": {
+      "vendor_id": "VEN-2026-9109",
+      "name": "Arkan Shaikh",
+      "phone": "9876543210",
+      "email": "arkansshaikh07@gmail.com",
+      "password": "arkan07",
+      "personal_id_proof": "",
+      "shop_name": "Milk",
+      "shop_address": "Lasalgaon",
+      "shop_location": "422306",
+      "shop_id_proof": "",
+      "tagline": "Hhh",
+      "description": "Hhjk",
+      "website": null,
+      "instagram": "",
+      "facebook": "",
+      "banner_image": "",
+      "logo_image": "",
+      "business_name": null,
+      "gst_number": "66665",
+      "pan_number": "Hhgbn",
+      "fssai_license": "Jjjb",
+      "bank_name": "HDFC",
+      "account_holder_name": "Arkan Shaikh",
+      "account_number": "66699",
+      "ifsc_code": "Ghukkn",
+      "account_type": "",
+      "bank_branch": "",
+      "verified": true,
+      "is_active": true,
+      "created_at": "2026-03-26T06:58:01.181Z",
+      "updated_at": "2026-03-26T11:15:09.299Z"
+    }
+  },
+  {
+    "model": "users.vendor",
+    "pk": 6,
+    "fields": {
+      "vendor_id": "VEN-2026-4396",
+      "name": "Ffgh",
+      "phone": "9822758580",
+      "email": "arkannshaikh07@gmail.com",
+      "password": "arkan07",
+      "personal_id_proof": "",
+      "shop_name": "Kkkkk",
+      "shop_address": "Vv nnjhb",
+      "shop_location": "422306",
+      "shop_id_proof": "",
+      "tagline": null,
+      "description": null,
+      "website": null,
+      "instagram": null,
+      "facebook": null,
+      "banner_image": "",
+      "logo_image": "",
+      "business_name": null,
+      "gst_number": "",
+      "pan_number": "",
+      "fssai_license": "",
+      "bank_name": null,
+      "account_holder_name": null,
+      "account_number": "",
+      "ifsc_code": "",
+      "account_type": null,
+      "bank_branch": null,
+      "verified": false,
+      "is_active": true,
+      "created_at": "2026-03-28T20:17:15.577Z",
+      "updated_at": "2026-03-28T20:17:15.577Z"
+    }
+  },
+  {
+    "model": "promotion.banner",
+    "pk": 1,
+    "fields": {
+      "title_en": "Fresh Milk Daily",
+      "title_hi": "\u0924\u093e\u091c\u093c\u093e \u0926\u0942\u0927 \u0930\u094b\u091c\u093c\u093e\u0928\u093e",
+      "subtitle_en": "Subscribe & Save 10% Every Month",
+      "subtitle_hi": "\u0938\u092c\u094d\u0938\u0915\u094d\u0930\u093e\u0907\u092c \u0915\u0930\u0947\u0902 \u0914\u0930 \u0939\u0930 \u092e\u0939\u0940\u0928\u0947 10% \u092c\u091a\u093e\u090f\u0902",
+      "color": "bg-purple-500",
+      "image": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&w=400&q=80",
+      "link_url": null,
+      "is_active": true,
+      "order": 0,
+      "created_at": "2026-03-10T09:45:57.678Z",
+      "products": [
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "model": "promotion.banner",
+    "pk": 2,
+    "fields": {
+      "title_en": "Traditional Ghee",
+      "title_hi": "\u092a\u093e\u0930\u0902\u092a\u0930\u093f\u0915 \u0918\u0940",
+      "subtitle_en": "The Purity of Bilona Method",
+      "subtitle_hi": "\u092c\u093f\u0932\u094b\u0928\u093e \u0935\u093f\u0927\u093f \u0915\u0940 \u0936\u0941\u0926\u094d\u0927\u0924\u093e",
+      "color": "bg-orange-500",
+      "image": "https://images.unsplash.com/photo-1625944525335-473db7a5f4c5?auto=format&fit=crop&w=600&h=600&q=80",
+      "link_url": null,
+      "is_active": true,
+      "order": 0,
+      "created_at": "2026-03-10T09:45:57.688Z",
+      "products": [
+        8
+      ]
+    }
+  },
+  {
+    "model": "promotion.banner",
+    "pk": 3,
+    "fields": {
+      "title_en": "Breakfast Essentials",
+      "title_hi": "\u0928\u093e\u0936\u094d\u0924\u0947 \u0915\u0940 \u091c\u093c\u0930\u0942\u0930\u0940 \u091a\u0940\u091c\u093c\u0947\u0902",
+      "subtitle_en": "Eggs & Butter Delivered by 7 AM",
+      "subtitle_hi": "\u0905\u0902\u0921\u0947 \u0914\u0930 \u092e\u0915\u094d\u0916\u0928 \u0938\u0941\u092c\u0939 7 \u092c\u091c\u0947 \u0924\u0915 \u092a\u0939\u0941\u0901\u091a\u093e\u090f \u091c\u093e\u090f\u0901\u0917\u0947",
+      "color": "bg-green-600",
+      "image": "https://images.unsplash.com/photo-1506976785307-8732e854ad03?auto=format&fit=crop&w=800&q=80",
+      "link_url": null,
+      "is_active": true,
+      "order": 0,
+      "created_at": "2026-03-10T09:45:57.692Z",
+      "products": [
+        8,
+        6
+      ]
+    }
+  },
+  {
+    "model": "promotion.banner",
+    "pk": 4,
+    "fields": {
+      "title_en": "Summer Chills",
+      "title_hi": "\u0917\u0930\u094d\u092e\u093f\u092f\u094b\u0902 \u0915\u0940 \u0920\u0902\u0921\u0915",
+      "subtitle_en": "Refreshing Beverages & Yogurts",
+      "subtitle_hi": "\u0924\u093e\u091c\u093c\u093e \u092a\u0947\u092f \u0914\u0930 \u0926\u0939\u0940",
+      "color": "bg-blue-600",
+      "image": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=800&q=80",
+      "link_url": null,
+      "is_active": true,
+      "order": 0,
+      "created_at": "2026-03-10T09:45:57.696Z",
+      "products": [
+        9
+      ]
+    }
+  }
+]
