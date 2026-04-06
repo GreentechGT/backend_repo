@@ -25,7 +25,7 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key-replace-in-prod')
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'milk-delivery-backend-repo.onrender.com,localhost,127.0.0.1').split(',')
 
 
 # Application definition
@@ -110,10 +110,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'milk_delivery_backend.wsgi.application'
 ASGI_APPLICATION = 'milk_delivery_backend.asgi.application'
 
-# Channel Layers (Redis)
+# Channel Layers (Redis for Production)
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+        },
     },
 }
 
