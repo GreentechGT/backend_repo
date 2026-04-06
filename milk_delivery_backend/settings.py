@@ -31,7 +31,10 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
     'django.contrib.admin',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     # Third-party apps
     'rest_framework',
     'corsheaders',
+    'django_apscheduler',
 
     # Local apps
     'product',
@@ -104,6 +108,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'milk_delivery_backend.wsgi.application'
+ASGI_APPLICATION = 'milk_delivery_backend.asgi.application'
+
+# Channel Layers (Redis)
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
+
+
 
 
 # Database
@@ -173,3 +187,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'arkannshaikh07@gmail.com' # Replace with your email
 EMAIL_HOST_PASSWORD = '[PASSWORD]' # Replace with your app password
+
+# Razorpay Configuration
+RAZORPAY_KEY_ID = os.environ.get('RAZORPAY_KEY_ID', 'rzp_test_placeholder')
+RAZORPAY_KEY_SECRET = os.environ.get('RAZORPAY_KEY_SECRET', 'secret_placeholder')

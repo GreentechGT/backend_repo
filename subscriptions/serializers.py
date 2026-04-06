@@ -64,6 +64,12 @@ class BaseSubscriberSerializer(serializers.ModelSerializer):
     frequency_localized = serializers.SerializerMethodField()
     slot_localized = serializers.SerializerMethodField()
     status_localized = serializers.SerializerMethodField()
+    user_name = serializers.CharField(source='user.full_name', read_only=True)
+    user_phone = serializers.CharField(source='user.phone', read_only=True)
+    address_details = serializers.CharField(source='address.address', read_only=True)
+    city = serializers.CharField(source='address.city', read_only=True)
+    pincode = serializers.CharField(source='address.pincode', read_only=True)
+    plan_price = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
 
     def get_plan_name(self, obj):
         return {'en': obj.plan_name_en, 'hi': obj.plan_name_hi}
@@ -87,29 +93,14 @@ class MonthlySubscriberSerializer(BaseSubscriberSerializer):
     class Meta:
         model = MonthlySubscriber
         fields = [
-            'id', 'subscription_type', 'plan_name', 'description', 
-            'product_name', 'image', 'frequency_localized', 
-            'slot_localized', 'status_localized', 'status', 
-            'slot', 'frequency', 'quantity_litres', 
-            'plan_subscribed_date', 'subscription_end_date'
-        ] if hasattr(MonthlySubscriber, 'subscription_type') else [
             'id', 'plan_name', 'description', 
             'product_name', 'image', 'frequency_localized', 
             'slot_localized', 'status_localized', 'status', 
             'slot', 'frequency', 'quantity_litres', 
-            'plan_subscribed_date', 'subscription_end_date'
-        ]
-    
-    # Actually subscription_type is added in the view's data, so we don't need it in fields if not in model
-    # I'll just list the model fields + method fields
-    class Meta:
-        model = MonthlySubscriber
-        fields = [
-            'id', 'plan_name', 'description', 
-            'product_name', 'image', 'frequency_localized', 
-            'slot_localized', 'status_localized', 'status', 
-            'slot', 'frequency', 'quantity_litres', 
-            'plan_subscribed_date', 'subscription_end_date'
+            'plan_subscribed_date', 'subscription_end_date',
+            'is_paused', 'is_paused_days', 'original_subscription_end_date', 'paused_at',
+            'daily_delivery_status', 'daily_delivery_status_en', 'daily_delivery_status_hi', 'user_name', 'plan_price',
+            'status_confirmed_at', 'status_ontheway_at', 'status_delivered_at'
         ]
 
 class YearlySubscriberSerializer(BaseSubscriberSerializer):
@@ -120,5 +111,8 @@ class YearlySubscriberSerializer(BaseSubscriberSerializer):
             'product_name', 'image', 'frequency_localized', 
             'slot_localized', 'status_localized', 'status', 
             'slot', 'frequency', 'quantity_litres', 
-            'plan_subscribed_date', 'subscription_end_date'
+            'plan_subscribed_date', 'subscription_end_date',
+            'is_paused', 'is_paused_days', 'original_subscription_end_date', 'paused_at',
+            'daily_delivery_status', 'daily_delivery_status_en', 'daily_delivery_status_hi', 'user_name', 'plan_price',
+            'status_confirmed_at', 'status_ontheway_at', 'status_delivered_at'
         ]

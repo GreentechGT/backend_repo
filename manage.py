@@ -8,6 +8,13 @@ def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'milk_delivery_backend.settings')
     try:
+        import django_apscheduler
+    except ModuleNotFoundError:
+        import subprocess
+        print("Auto-installing missing django-apscheduler module into your specific Python environment...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "django-apscheduler"])
+        
+    try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
         raise ImportError(

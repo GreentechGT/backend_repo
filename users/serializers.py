@@ -11,7 +11,7 @@ from .utils import send_otp_via_email
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
-        fields = ['id', 'user', 'full_name', 'phone', 'address', 'city', 'pincode', 'address_type', 'is_default']
+        fields = ['id', 'user', 'address', 'city', 'pincode', 'address_type', 'is_default']
         read_only_fields = ['user']
 
 class UserSerializer(serializers.ModelSerializer):
@@ -19,7 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ('id', 'user_id', 'full_name', 'email', 'role', 'phone', 'addresses', 'push_token')
+        fields = ('id', 'user_id', 'full_name', 'email', 'role', 'phone', 'addresses', 'push_token', 'phone_verified', 'email_verified')
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:

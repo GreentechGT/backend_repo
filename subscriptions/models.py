@@ -16,6 +16,11 @@ def sync_localized_fields(obj):
         'status': {
             'active': {'en': 'Active', 'hi': 'सक्रिय'},
             'paused': {'en': 'Paused', 'hi': 'थांबवले'},
+        },
+        'delivery_status': {
+            'confirmed': {'en': 'Confirmed', 'hi': 'पुष्टी केली'},
+            'on_the_way': {'en': 'On the Way', 'hi': 'रास्त्यावर'},
+            'delivered': {'en': 'Delivered', 'hi': 'वितरित'},
         }
     }
 
@@ -37,10 +42,14 @@ def sync_localized_fields(obj):
         obj.status_en = t['en']
         obj.status_hi = t['hi']
 
+    # Sync Delivery Status
+    if hasattr(obj, 'daily_delivery_status') and obj.daily_delivery_status in translations['delivery_status']:
+        t = translations['delivery_status'][obj.daily_delivery_status]
+        obj.daily_delivery_status_en = t['en']
+        obj.daily_delivery_status_hi = t['hi']
+
 class Subscription(models.Model):
     FREQUENCY_CHOICES = [
-        ('daily', 'Daily'),
-        ('weekly', 'Weekly'),
         ('monthly', 'Monthly'),
         ('yearly', 'Yearly'),
     ]
@@ -54,6 +63,11 @@ class Subscription(models.Model):
     STATUS_CHOICES = [
         ('active', 'Active'),
         ('paused', 'Paused'),
+    ]
+    DELIVERY_STATUS_CHOICES = [
+        ('confirmed', 'Confirmed'),
+        ('on_the_way', 'On the Way'),
+        ('delivered', 'Delivered'),
     ]
     CATEGORY_CHOICES = [
         ('Monthly Essentials', 'Monthly Essentials'),
@@ -130,16 +144,81 @@ class MonthlySubscriber(models.Model):
     slot = models.CharField(max_length=20, choices=Subscription.SLOT_CHOICES, default='morning')
     frequency = models.CharField(max_length=20, choices=Subscription.FREQUENCY_CHOICES, default='daily')
     quantity_litres = models.PositiveIntegerField(default=1)
+    plan_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     
+    # Paused Logic
+    is_paused = models.BooleanField(default=False)
+    is_paused_days = models.PositiveIntegerField(default=0)
+    paused_at = models.DateTimeField(null=True, blank=True)
+    original_subscription_end_date = models.DateField(null=True, blank=True)
+    
+    # Delivery logic
+    daily_delivery_status = models.CharField(max_length=20, choices=Subscription.DELIVERY_STATUS_CHOICES, default='confirmed')
+    daily_delivery_status_en = models.CharField(max_length=20, default='Confirmed')
+    daily_delivery_status_hi = models.CharField(max_length=20, default='पुष्टी केली')
+
     plan_subscribed_date = models.DateField(auto_now_add=True)
     subscription_end_date = models.DateField()
     
+    status_ontheway_at = models.DateTimeField(null=True, blank=True)
+
+    status_delivered_at = models.DateTimeField(null=True, blank=True)
+    status_confirmed_at = models.DateTimeField(null=True, blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
+        from django.utils import timezone
+        from datetime import timedelta
+        
+        # Logic to handle Pause/Resume automation
+        if self.pk:
+            old_instance = MonthlySubscriber.objects.get(pk=self.pk)
+            # Case 1: Just Paused
+            if self.is_paused and not old_instance.is_paused:
+                self.paused_at = timezone.now()
+            # Case 2: Just Resumed
+            elif not self.is_paused and old_instance.is_paused:
+                if self.paused_at:
+                    delta = timezone.now().date() - self.paused_at.date()
+                    # Add at least 1 day if it was paused and time has passed, or 0 if same day
+                    self.is_paused_days += max(0, delta.days)
+                    self.paused_at = None
+            
+            # Delivery Status Timestamps
+            if self.daily_delivery_status != old_instance.daily_delivery_status:
+                if self.daily_delivery_status == 'confirmed':
+                    self.status_confirmed_at = timezone.now()
+                elif self.daily_delivery_status == 'on_the_way':
+                    self.status_ontheway_at = timezone.now()
+
+                elif self.daily_delivery_status == 'delivered':
+                    self.status_delivered_at = timezone.now()
+        else:
+            # New subscription
+            if self.daily_delivery_status == 'confirmed':
+                self.status_confirmed_at = timezone.now()
+        
+        # Ensure original end date is stored
+        if not self.original_subscription_end_date and self.subscription_end_date:
+            self.original_subscription_end_date = self.subscription_end_date
+            
+        # Update current end date based on original + was-paused days
+        if self.original_subscription_end_date:
+            self.subscription_end_date = self.original_subscription_end_date + timedelta(days=self.is_paused_days)
+
         sync_localized_fields(self)
         super().save(*args, **kwargs)
+        
+        # Trigger WebSocket Notification if status changed
+        if self.pk:
+            try:
+                from orders.notifications import notify_subscription_status_change
+                notify_subscription_status_change(self)
+            except Exception as e:
+                print(f"WS Notification Error: {e}")
+
 
     def __str__(self):
         return f"{self.user.username} - Monthly - {self.plan.name_en}"
@@ -169,16 +248,75 @@ class YearlySubscriber(models.Model):
     slot = models.CharField(max_length=20, choices=Subscription.SLOT_CHOICES, default='morning')
     frequency = models.CharField(max_length=20, choices=Subscription.FREQUENCY_CHOICES, default='daily')
     quantity_litres = models.PositiveIntegerField(default=1)
+    plan_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     
+    # Paused Logic
+    is_paused = models.BooleanField(default=False)
+    is_paused_days = models.PositiveIntegerField(default=0)
+    paused_at = models.DateTimeField(null=True, blank=True)
+    original_subscription_end_date = models.DateField(null=True, blank=True)
+    
+    # Delivery logic
+    daily_delivery_status = models.CharField(max_length=20, choices=Subscription.DELIVERY_STATUS_CHOICES, default='confirmed')
+    daily_delivery_status_en = models.CharField(max_length=20, default='Confirmed')
+    daily_delivery_status_hi = models.CharField(max_length=20, default='पुष्टी केली')
+
     plan_subscribed_date = models.DateField(auto_now_add=True)
     subscription_end_date = models.DateField()
     
+    status_ontheway_at = models.DateTimeField(null=True, blank=True)
+
+    status_delivered_at = models.DateTimeField(null=True, blank=True)
+    status_confirmed_at = models.DateTimeField(null=True, blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
+        from django.utils import timezone
+        from datetime import timedelta
+
+        if self.pk:
+            old_instance = YearlySubscriber.objects.get(pk=self.pk)
+            if self.is_paused and not old_instance.is_paused:
+                self.paused_at = timezone.now()
+            elif not self.is_paused and old_instance.is_paused:
+                if self.paused_at:
+                    delta = timezone.now().date() - self.paused_at.date()
+                    self.is_paused_days += max(0, delta.days)
+                    self.paused_at = None
+            
+            # Delivery Status Timestamps
+            if self.daily_delivery_status != old_instance.daily_delivery_status:
+                if self.daily_delivery_status == 'confirmed':
+                    self.status_confirmed_at = timezone.now()
+                elif self.daily_delivery_status == 'on_the_way':
+                    self.status_ontheway_at = timezone.now()
+
+                elif self.daily_delivery_status == 'delivered':
+                    self.status_delivered_at = timezone.now()
+        else:
+            # New subscription
+            if self.daily_delivery_status == 'confirmed':
+                self.status_confirmed_at = timezone.now()
+
+        if not self.original_subscription_end_date and self.subscription_end_date:
+            self.original_subscription_end_date = self.subscription_end_date
+            
+        if self.original_subscription_end_date:
+            self.subscription_end_date = self.original_subscription_end_date + timedelta(days=self.is_paused_days)
+
         sync_localized_fields(self)
         super().save(*args, **kwargs)
+
+        # Trigger WebSocket Notification if status changed
+        if self.pk:
+            try:
+                from orders.notifications import notify_subscription_status_change
+                notify_subscription_status_change(self)
+            except Exception as e:
+                print(f"WS Notification Error: {e}")
+
 
     def __str__(self):
         return f"{self.user.username} - Yearly - {self.plan.name_en}"

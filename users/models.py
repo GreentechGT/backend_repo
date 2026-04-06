@@ -8,9 +8,15 @@ class UserManager(BaseUserManager):
             raise ValueError('Either Email or Phone must be set')
         if email:
             email = self.normalize_email(email)
+            # Real email provided - not verified yet (requires OTP)
+            extra_fields.setdefault('email_verified', False)
         else:
+            # Phone-only registration: auto-generate placeholder email
             email = f"{phone}@noemail.local"
-            
+            # Phone was used to register - mark it as verified
+            extra_fields.setdefault('phone_verified', True)
+            extra_fields.setdefault('email_verified', False)
+
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
@@ -37,7 +43,11 @@ class User(AbstractUser):
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='customer')
     phone = models.CharField(max_length=15, unique=True, blank=True, null=True)
     profile_image = models.ImageField(upload_to='profiles/', blank=True, null=True)
-    
+
+    # Verification status
+    phone_verified = models.BooleanField(default=False)
+    email_verified = models.BooleanField(default=False)
+
     # Push notification token
     push_token = models.CharField(max_length=255, blank=True, null=True)
 
@@ -93,8 +103,6 @@ class Address(models.Model):
         related_name='addresses'
     )
 
-    full_name = models.CharField(max_length=200, blank=True, null=True)
-    phone = models.CharField(max_length=15, blank=True, null=True)
     address = models.TextField()
     city = models.CharField(max_length=100)
     pincode = models.CharField(max_length=10)

@@ -2,6 +2,7 @@ from rest_framework import generics, permissions, status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.tokens import RefreshToken
 from django.utils import timezone
 import random
 from datetime import timedelta
@@ -82,6 +83,11 @@ class VerifyOTPView(APIView):
                 customer.is_verified = True
                 customer.save()
                 
+                # Determine if registration was via phone or email based on identifier used
+                has_at_symbol = "@" in identifier
+                is_phone_verification = not has_at_symbol
+                is_email_verification = has_at_symbol
+
                 # Now create the actual User account for login
                 q_objects = Q()
                 if customer.email:
@@ -90,15 +96,26 @@ class VerifyOTPView(APIView):
                     q_objects |= Q(phone=customer.phone)
                     
                 if not User.objects.filter(q_objects).exists():
-                    User.objects.create_user(
+                    user = User.objects.create_user(
                         email=customer.email if customer.email else None,
                         password=customer.password, # create_user will hash this
                         phone=customer.phone if customer.phone else None,
                         full_name=customer.name,
                         role='customer',
-                        user_id=customer.cust_id
+                        user_id=customer.cust_id,
+                        # Set verified status based on what was actually verified via OTP
+                        phone_verified=is_phone_verification,
+                        email_verified=is_email_verification,
                     )
-                    return Response({"detail": "Account verified and created successfully. You can now login."}, status=status.HTTP_200_OK)
+                    
+                    # Generate tokens for immediate login
+                    refresh = RefreshToken.for_user(user)
+                    return Response({
+                        "access": str(refresh.access_token),
+                        "refresh": str(refresh),
+                        "user": UserSerializer(user).data,
+                        "detail": "Account verified and created successfully."
+                    }, status=status.HTTP_200_OK)
                 else:
                     return Response({"detail": "User already exists."}, status=status.HTTP_400_BAD_REQUEST)
             except Exception as e:
@@ -130,3 +147,71 @@ class ResendOTPView(APIView):
         customer.save()
 
         return Response({"detail": "OTP resent successfully."}, status=status.HTTP_200_OK)
+
+
+class VerifyEmailOTPView(APIView):
+    """
+    Allows an already-authenticated user to verify a new email address.
+    The frontend sends the new email + OTP; on success the user's email is
+    updated, fake @noemail.local address is replaced, and email_verified=True.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        new_email = request.data.get('identifier')  # the new email to verify
+        otp_code = request.data.get('otp_code')
+
+        if not new_email or not otp_code:
+            return Response({"detail": "Email and OTP code are required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Validate the OTP — for now it's hardcoded as "1234"
+        if otp_code != "1234":
+            return Response({"detail": "Invalid or expired OTP."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Check the email isn't already taken by another user
+        existing = User.objects.filter(email=new_email).exclude(pk=request.user.pk).first()
+        if existing:
+            return Response({"detail": "This email is already in use by another account."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user = request.user
+            user.email = new_email
+            user.email_verified = True
+            user.save(update_fields=['email', 'email_verified'])
+            return Response(UserSerializer(user).data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"detail": f"Error updating email: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class VerifyPhoneOTPView(APIView):
+    """
+    Allows an already-authenticated user to verify a new or existing phone number.
+    The frontend sends the phone number + OTP; on success the user's phone is
+    updated and phone_verified=True.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        new_phone = request.data.get('identifier')
+        otp_code = request.data.get('otp_code')
+
+        if not new_phone or not otp_code:
+            return Response({"detail": "Phone and OTP code are required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Validate the OTP — for now it's hardcoded as "1234"
+        if otp_code != "1234":
+            return Response({"detail": "Invalid or expired OTP."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Check the phone isn't already taken by another user
+        existing = User.objects.filter(phone=new_phone).exclude(pk=request.user.pk).first()
+        if existing:
+            return Response({"detail": "This phone number is already in use by another account."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user = request.user
+            user.phone = new_phone
+            user.phone_verified = True
+            user.save(update_fields=['phone', 'phone_verified'])
+            return Response(UserSerializer(user).data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"detail": f"Error updating phone: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
