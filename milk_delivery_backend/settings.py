@@ -27,6 +27,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key-replace-i
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'milk-delivery-backend-repo.onrender.com,localhost,127.0.0.1').split(',')
 
+# CSRF & Security settings for Production (Render)
+CSRF_TRUSTED_ORIGINS = ['https://milk-delivery-backend-repo.onrender.com']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 
 # Application definition
 
