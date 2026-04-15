@@ -1,7 +1,7 @@
 from rest_framework import generics, status, views, permissions
 from rest_framework.response import Response
 from .models import Subscription, MonthlySubscriber, YearlySubscriber
-from .serializers import SubscriptionSerializer, MonthlySubscriberSerializer, YearlySubscriberSerializer
+from .serializers import SubscriptionSerializer, MonthlySubscriberSerializer, YearlySubscriberSerializer, VendorSubscriptionWriteSerializer
 from django.utils import timezone
 from datetime import timedelta
 from product.models import Product
@@ -176,3 +176,42 @@ class VendorSubscriptionUpdateView(views.APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class VendorSubscriptionPlanView(generics.ListCreateAPIView):
+    """
+    GET  /api/subscriptions/vendor/plans/ → list subscription plans for this vendor's shop
+    POST /api/subscriptions/vendor/plans/ → create a new subscription plan
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return VendorSubscriptionWriteSerializer
+        return SubscriptionSerializer
+
+    def get_queryset(self):
+        vendor_id = self.request.user.user_id
+        if not vendor_id:
+            return Subscription.objects.none()
+        return Subscription.objects.filter(product__shop_detail__vendor__vendor_id=vendor_id)
+
+
+class VendorSubscriptionPlanDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    GET    /api/subscriptions/vendor/plans/<id>/ → retrieve a plan
+    PATCH  /api/subscriptions/vendor/plans/<id>/ → update a plan
+    DELETE /api/subscriptions/vendor/plans/<id>/ → delete a plan
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method in ('PUT', 'PATCH'):
+            return VendorSubscriptionWriteSerializer
+        return SubscriptionSerializer
+
+    def get_queryset(self):
+        vendor_id = self.request.user.user_id
+        if not vendor_id:
+            return Subscription.objects.none()
+        return Subscription.objects.filter(product__shop_detail__vendor__vendor_id=vendor_id)

@@ -81,3 +81,60 @@ class ProductSerializer(serializers.ModelSerializer):
             'en': obj.description_en,
             'hi': obj.description_hi
         }
+
+
+class VendorProductWriteSerializer(serializers.ModelSerializer):
+    """Serializer for vendor to create/update their own products using simple field names."""
+    name = serializers.CharField(write_only=True, required=True)
+    description = serializers.CharField(write_only=True, required=False, allow_blank=True, default='')
+    category = serializers.CharField(write_only=True, required=True)
+
+    # Read-only display fields
+    id = serializers.IntegerField(read_only=True)
+    price = serializers.DecimalField(max_digits=10, decimal_places=2)
+    image = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+    stock_quantity = serializers.IntegerField(required=False, default=0)
+    is_active = serializers.BooleanField(required=False, default=True)
+    created_at = serializers.DateTimeField(read_only=True)
+    updated_at = serializers.DateTimeField(read_only=True)
+
+    class Meta:
+        model = Product
+        fields = ['id', 'name', 'description', 'category', 'price', 'image', 'stock_quantity', 'is_active', 'created_at', 'updated_at']
+
+    def validate_category(self, value):
+        try:
+            return Category.objects.get(name_en__iexact=value)
+        except Category.DoesNotExist:
+            # Create category if it doesn't exist
+            cat, _ = Category.objects.get_or_create(name_en=value)
+            return cat
+
+    def create(self, validated_data):
+        category = validated_data.pop('category')
+        name = validated_data.pop('name')
+        description = validated_data.pop('description', '')
+        shop_detail = validated_data.pop('shop_detail', None)
+        return Product.objects.create(
+            name_en=name,
+            description_en=description,
+            category=category,
+            shop_detail=shop_detail,
+            **validated_data
+        )
+
+    def update(self, instance, validated_data):
+        if 'name' in validated_data:
+            instance.name_en = validated_data.pop('name')
+        if 'description' in validated_data:
+            instance.description_en = validated_data.pop('description')
+        if 'category' in validated_data:
+            instance.category = validated_data.pop('category')
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+        return instance
+
+    def to_representation(self, instance):
+        """Return the full ProductSerializer representation after write."""
+        return ProductSerializer(instance, context=self.context).data

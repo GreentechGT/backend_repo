@@ -7,6 +7,7 @@ def sync_localized_fields(obj):
         'frequency': {
             'daily': {'en': 'Daily', 'hi': 'दैनिक'},
             'monthly': {'en': 'Monthly', 'hi': 'मासिक'},
+            'yearly': {'en': 'Yearly', 'hi': 'वार्षिक'},
         },
         'slot': {
             'morning': {'en': 'Morning', 'hi': 'सुबह'},

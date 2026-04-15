@@ -116,3 +116,76 @@ class YearlySubscriberSerializer(BaseSubscriberSerializer):
             'daily_delivery_status', 'daily_delivery_status_en', 'daily_delivery_status_hi', 'user_name', 'plan_price',
             'status_confirmed_at', 'status_ontheway_at', 'status_delivered_at'
         ]
+
+
+class VendorSubscriptionWriteSerializer(serializers.ModelSerializer):
+    subscription_name = serializers.CharField(write_only=True)
+    product_name = serializers.CharField(write_only=True)
+    amount = serializers.DecimalField(source='total_amount', max_digits=10, decimal_places=2)
+    delivery_slot = serializers.CharField(source='slot', write_only=True, required=False, default='morning')
+    # CharField instead of URLField: accepts local file:// URIs from ImagePicker
+    image = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+
+    class Meta:
+        model = Subscription
+        fields = ['id', 'subscription_name', 'product_name', 'frequency', 'amount', 'delivery_slot', 'image']
+
+    def create(self, validated_data):
+        subscription_name = validated_data.pop('subscription_name')
+        product_name = validated_data.pop('product_name')
+        
+        # Find the product by name for this vendor
+        request = self.context.get('request')
+        vendor_id = request.user.user_id
+        
+        try:
+            product = Product.objects.get(
+                name_en=product_name,
+                shop_detail__vendor__vendor_id=vendor_id
+            )
+        except Product.DoesNotExist:
+            raise serializers.ValidationError({"product_name": f"Product '{product_name}' not found for your shop."})
+
+        return Subscription.objects.create(
+            plan_name_en=subscription_name,
+            plan_name_hi=subscription_name, # Default same as EN for now
+            desc_en=f"Subscription for {product_name}",
+            desc_hi=f"{product_name} के लिए सदस्यता",
+            product=product,
+            **validated_data
+        )
+
+    def update(self, instance, validated_data):
+        if 'subscription_name' in validated_data:
+            name = validated_data.pop('subscription_name')
+            instance.plan_name_en = name
+            instance.plan_name_hi = name
+        
+        if 'product_name' in validated_data:
+            p_name = validated_data.pop('product_name')
+            request = self.context.get('request')
+            vendor_id = request.user.user_id
+            try:
+                product = Product.objects.get(
+                    name_en=p_name,
+                    shop_detail__vendor__vendor_id=vendor_id
+                )
+                instance.product = product
+                instance.desc_en = f"Subscription for {p_name}"
+            except Product.DoesNotExist:
+                raise serializers.ValidationError({"product_name": f"Product '{p_name}' not found for your shop."})
+
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+        return instance
+
+    def to_representation(self, instance):
+        return {
+            'id': instance.id,
+            'subscription_name': instance.plan_name_en,
+            'product_name': instance.product.name_en,
+            'frequency': instance.frequency,
+            'amount': float(instance.total_amount),
+            'image': instance.image
+        }
