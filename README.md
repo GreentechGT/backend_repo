@@ -1,4 +1,4 @@
-## ⚙️ Backend Installation & Setup (Django)
+`## ⚙️ Backend Installation & Setup (Django)
 
 ### 1. Prerequisites
 Make sure you have **Python** (3.8 or higher) and **pip** installed on your system.
@@ -12,7 +12,7 @@ venv\Scripts\activate
 ```
 ### 3. Install Depedencies
 ```bash
-python -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Run Application (Local Setup)
