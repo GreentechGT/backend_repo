@@ -1,17 +1,17 @@
 from django.urls import path
 from .views import (
-    SubscriptionListView, SubscribeView, UserSubscriptionListView, 
-    SubscriptionUpdateView, VendorSubscriptionListView, VendorSubscriptionUpdateView,
-    VendorSubscriptionPlanView, VendorSubscriptionPlanDetailView
+    subscription_list, subscribe, user_subscription_list, 
+    subscription_update, vendor_subscription_list, vendor_subscription_update,
+    vendor_subscription_plans, vendor_subscription_plan_detail
 )
 
 urlpatterns = [
-    path('', SubscriptionListView.as_view(), name='subscription-list'),
-    path('subscribe/', SubscribeView.as_view(), name='subscribe'),
-    path('user/list/', UserSubscriptionListView.as_view(), name='user-subscriptions'),
-    path('update-subscription/<str:type>/<int:pk>/', SubscriptionUpdateView.as_view(), name='subscription-update'),
-    path('vendor/list/', VendorSubscriptionListView.as_view(), name='vendor-subscriptions'),
-    path('vendor/update/<str:type>/<int:pk>/', VendorSubscriptionUpdateView.as_view(), name='vendor-subscription-update'),
-    path('vendor/plans/', VendorSubscriptionPlanView.as_view(), name='vendor-subscription-plans'),
-    path('vendor/plans/<int:pk>/', VendorSubscriptionPlanDetailView.as_view(), name='vendor-subscription-plan-detail'),
+    path('', subscription_list, name='subscription-list'),
+    path('subscribe/', subscribe, name='subscribe'),
+    path('user/list/', user_subscription_list, name='user-subscriptions'),
+    path('update-subscription/<str:type>/<int:pk>/', subscription_update, name='subscription-update'),
+    path('vendor/list/', vendor_subscription_list, name='vendor-subscriptions'),
+    path('vendor/update/<str:type>/<int:pk>/', vendor_subscription_update, name='vendor-subscription-update'),
+    path('vendor/plans/', vendor_subscription_plans, name='vendor-subscription-plans'),
+    path('vendor/plans/<int:pk>/', vendor_subscription_plan_detail, name='vendor-subscription-plan-detail'),
 ]

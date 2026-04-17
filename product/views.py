@@ -1,10 +1,11 @@
 from rest_framework import viewsets, generics, permissions, status
 from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from .models import Category, Product, ShopDetail
 from .serializers import UserSerializer, CategorySerializer, ProductSerializer, VendorProductWriteSerializer
+from rest_framework.exceptions import NotFound
 
 User = get_user_model()
 
@@ -28,70 +29,74 @@ class ProductViewSet(viewsets.ModelViewSet):
         serializer.save()
         print(f"--- END DEBUG ---\n")
 
-
-class VendorProductsView(generics.ListCreateAPIView):
+@api_view(['GET', 'POST'])
+@permission_classes([permissions.IsAuthenticated])
+def vendor_products_list(request):
     """
     GET  /api/vendor-products/  → list products for the logged-in vendor
     POST /api/vendor-products/  → create a new product linked to the vendor's shop
     """
-    permission_classes = [permissions.IsAuthenticated]
+    user = request.user
+    vendor_id = getattr(user, 'user_id', None)
 
-    def get_serializer_class(self):
-        if self.request.method == 'POST':
-            return VendorProductWriteSerializer
-        return ProductSerializer
+    if not vendor_id:
+        if request.method == 'GET':
+            return Response([])
+        return Response({'error': 'Not an authenticated vendor'}, status=status.HTTP_403_FORBIDDEN)
 
-    def get_queryset(self):
-        user = self.request.user
-        vendor_id = getattr(user, 'user_id', None)
-
-        if not vendor_id:
-            return Product.objects.none()
-
-        try:
-            shop_detail = ShopDetail.objects.filter(vendor__vendor_id=vendor_id).first()
-            if not shop_detail:
-                return Product.objects.none()
-            return Product.objects.filter(shop_detail=shop_detail).select_related('category', 'shop_detail')
-        except Exception:
-            return Product.objects.none()
-
-    def perform_create(self, serializer):
-        """Auto-link the product to the vendor's ShopDetail."""
-        user = self.request.user
-        vendor_id = getattr(user, 'user_id', None)
-
+    try:
+        shop_detail = ShopDetail.objects.filter(vendor__vendor_id=vendor_id).first()
+    except Exception:
         shop_detail = None
-        if vendor_id:
-            shop_detail = ShopDetail.objects.filter(vendor__vendor_id=vendor_id).first()
 
-        serializer.save(shop_detail=shop_detail)
+    if request.method == 'GET':
+        if not shop_detail:
+            return Response([])
+        products = Product.objects.filter(shop_detail=shop_detail).select_related('category', 'shop_detail')
+        serializer = ProductSerializer(products, many=True)
+        return Response(serializer.data)
 
+    elif request.method == 'POST':
+        serializer = VendorProductWriteSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(shop_detail=shop_detail)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class VendorProductDetailView(generics.RetrieveUpdateDestroyAPIView):
+@api_view(['GET', 'PUT', 'PATCH', 'DELETE'])
+@permission_classes([permissions.IsAuthenticated])
+def vendor_product_detail(request, pk):
     """
     GET    /api/vendor-products/<id>/  → retrieve a specific product
     PATCH  /api/vendor-products/<id>/  → update a vendor's product
     DELETE /api/vendor-products/<id>/  → delete a vendor's product
     """
-    permission_classes = [permissions.IsAuthenticated]
+    user = request.user
+    vendor_id = getattr(user, 'user_id', None)
 
-    def get_serializer_class(self):
-        if self.request.method in ('PUT', 'PATCH'):
-            return VendorProductWriteSerializer
-        return ProductSerializer
+    if not vendor_id:
+        return Response({'error': 'Not an authenticated vendor'}, status=status.HTTP_403_FORBIDDEN)
 
-    def get_queryset(self):
-        user = self.request.user
-        vendor_id = getattr(user, 'user_id', None)
+    try:
+        shop_detail = ShopDetail.objects.filter(vendor__vendor_id=vendor_id).first()
+        if not shop_detail:
+            raise NotFound(detail="Product not found or you do not have permission.")
+        product = Product.objects.get(pk=pk, shop_detail=shop_detail)
+    except (Product.DoesNotExist, Exception):
+        raise NotFound(detail="Product not found or you do not have permission.")
 
-        if not vendor_id:
-            return Product.objects.none()
+    if request.method == 'GET':
+        serializer = ProductSerializer(product)
+        return Response(serializer.data)
 
-        try:
-            shop_detail = ShopDetail.objects.filter(vendor__vendor_id=vendor_id).first()
-            if not shop_detail:
-                return Product.objects.none()
-            return Product.objects.filter(shop_detail=shop_detail).select_related('category', 'shop_detail')
-        except Exception:
-            return Product.objects.none()
+    elif request.method in ('PUT', 'PATCH'):
+        partial = request.method == 'PATCH'
+        serializer = VendorProductWriteSerializer(product, data=request.data, partial=partial)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        product.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

@@ -1,15 +1,15 @@
 from django.urls import path
 from .views import (
-    PromotionListView, PromotionDetailView,
-    BannerListView, BannerDetailView,
-    OfferListView, OfferDetailView
+    promotion_list, promotion_detail,
+    banner_list, banner_detail,
+    offer_list, offer_detail
 )
 
 urlpatterns = [
-    path('', PromotionListView.as_view(), name='promotion-list'),
-    path('<int:pk>/', PromotionDetailView.as_view(), name='promotion-detail'),
-    path('banners/', BannerListView.as_view(), name='banner-list'),
-    path('banners/<int:pk>/', BannerDetailView.as_view(), name='banner-detail'),
-    path('offers/', OfferListView.as_view(), name='offer-list'),
-    path('offers/<int:pk>/', OfferDetailView.as_view(), name='offer-detail'),
+    path('', promotion_list, name='promotion-list'),
+    path('<int:pk>/', promotion_detail, name='promotion-detail'),
+    path('banners/', banner_list, name='banner-list'),
+    path('banners/<int:pk>/', banner_detail, name='banner-detail'),
+    path('offers/', offer_list, name='offer-list'),
+    path('offers/<int:pk>/', offer_detail, name='offer-detail'),
 ]
