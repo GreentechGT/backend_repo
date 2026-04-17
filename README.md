@@ -19,14 +19,14 @@ pip install -r requirements.txt
 
 ### 4. Environment Variables
 For security reasons, the `.env` file containing secrets is **not** pushed to GitHub.
-When another developer clones this repository, they must create their own `.env` file by duplicating the provided `.env.example` file.
+you must clones this repository, they must create their own `.env` file by duplicating the provided `.env.example` file.
 
 ```bash
 # On Windows, you can just manually copy .env.example and rename it to .env
 # Or in PowerShell:
 copy .env.example .env
 ```
-Open your newly created `.env` file and paste in your database connection string, as well as the secret keys provided by your manager:
+Open your newly created `.env` file and paste in your database connection string:
 ```env
 DATABASE_URL=postgresql://<username>:<password>@localhost:5432/<database_name>
 ```
